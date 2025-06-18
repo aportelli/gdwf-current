@@ -36,7 +36,7 @@ void computePropagator(PropagatorField<Action> &prop5, PropagatorField<Action> &
 }
 
 template <class Action>
-void TestRegression(Action &Ddwf, GaugeField<Action> &Umu, GridCartesian *FGrid,
+void testRegression(Action &Ddwf, GaugeField<Action> &Umu, GridCartesian *FGrid,
                     GridRedBlackCartesian *FrbGrid, GridCartesian *UGrid,
                     GridRedBlackCartesian *UrbGrid, RealD mass, RealD M5,
                     GridParallelRNG *RNG4, GridParallelRNG *RNG5)
@@ -114,18 +114,18 @@ int main(int argc, char **argv)
 
   std::cout << GridLogMessage << "-- DWF regression test" << std::endl;
   DomainWallFermionD Ddwf(Umu, *FGrid, *FrbGrid, *UGrid, *UrbGrid, mass, M5);
-  TestRegression<DomainWallFermionD>(Ddwf, Umu, FGrid, FrbGrid, UGrid, UrbGrid, mass, M5,
+  testRegression<DomainWallFermionD>(Ddwf, Umu, FGrid, FrbGrid, UGrid, UrbGrid, mass, M5,
                                      &RNG4, &RNG5);
 
   std::cout << GridLogMessage << "-- Moebius DWF regression test" << std::endl;
   ScaledShamirFermionD Dsham(Umu, *FGrid, *FrbGrid, *UGrid, *UrbGrid, mass, M5, 2.0);
-  TestRegression<ScaledShamirFermionD>(Dsham, Umu, FGrid, FrbGrid, UGrid, UrbGrid, mass,
+  testRegression<ScaledShamirFermionD>(Dsham, Umu, FGrid, FrbGrid, UGrid, UrbGrid, mass,
                                        M5, &RNG4, &RNG5);
 
   std::cout << GridLogMessage << "-- z-Moebius DWF regression test" << std::endl;
   ZMobiusFermionD ZDmob(Umu, *FGrid, *FrbGrid, *UGrid, *UrbGrid, mass, M5, omegas, 1.0,
                         0.0);
-  TestRegression<ZMobiusFermionD>(ZDmob, Umu, FGrid, FrbGrid, UGrid, UrbGrid, mass, M5,
+  testRegression<ZMobiusFermionD>(ZDmob, Umu, FGrid, FrbGrid, UGrid, UrbGrid, mass, M5,
                                   &RNG4, &RNG5);
 
   Grid_finalize();
