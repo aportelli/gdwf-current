@@ -1,0 +1,9 @@
+BasedOnStyle: LLVM
+AlwaysBreakTemplateDeclarations: "Yes"
+AlignEscapedNewlines: Left
+BreakBeforeBraces: Allman
+FixNamespaceComments: "true"
+UseTab: Never
+IndentWidth: 2
+TabWidth: 2
+ColumnLimit: 90
