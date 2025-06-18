@@ -15,7 +15,7 @@
   jtmp = where((lcoor <= tmax + tshift), jtmp, zz);      \
   qout = qout + jtmp;
 
-#define Gs(s) (curr_type == Current::Axial) ? (((s) < Ls / 2) ? -1. : 1.) : 1.
+#define Gs(s) ((curr_type == Current::Axial) ? (((s) < Ls / 2) ? -1. : 1.) : 1.)
 #define Pp(Q) (0.5 * (Q + g5 * Q))
 #define Pm(Q) (0.5 * (Q - g5 * Q))
 
