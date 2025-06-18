@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.11.0)
 
 # set the app name here
-set(APP_NAME grid-app)
+set(APP_NAME gdwf-current)
 
 project(
   ${APP_NAME}
