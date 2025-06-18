@@ -1,3 +1,25 @@
+/*
+ * main.cpp, part of gdwf-current (https://github.com/aportelli/gdwf-current)
+ *
+ * Copyright Antonin Portelli (C) 2025
+ *
+ * gdwf-current is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * gdwf-current is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with gdwf-current.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * See the full license in the file "LICENSE" in the top level distribution
+ * directory.
+ */
+
 #include "current.hpp"
 #include <Grid/Grid.h>
 
