@@ -23,6 +23,9 @@
 #include "current.hpp"
 #include <Grid/Grid.h>
 
+#define BIG_SEP "===================="
+#define SEP "--------------------"
+
 using namespace Grid;
 
 template <typename Action>
@@ -37,11 +40,19 @@ void computePropagator(PropagatorField<Action> &prop5, PropagatorField<Action> &
   {
     for (int c = 0; c < Nc; c++)
     {
-      FermionField<Action> src4(src.Grid());
-      PropToFerm<Action>(src4, src, s, c);
-
       FermionField<Action> src5(prop5.Grid());
-      action.ImportPhysicalFermionSource(src4, src5);
+
+      if (src.Grid()->Nd() == Nd)
+      {
+        FermionField<Action> src4(src.Grid());
+        PropToFerm<Action>(src4, src, s, c);
+
+        action.ImportPhysicalFermionSource(src4, src5);
+      }
+      else
+      {
+        PropToFerm<Action>(src5, src, s, c);
+      }
 
       FermionField<Action> result5(prop5.Grid());
       result5 = Zero();
@@ -60,8 +71,8 @@ void computePropagator(PropagatorField<Action> &prop5, PropagatorField<Action> &
 template <class Action>
 void testRegression(Action &Ddwf, GaugeField<Action> &Umu, GridCartesian *FGrid,
                     GridRedBlackCartesian *FrbGrid, GridCartesian *UGrid,
-                    GridRedBlackCartesian *UrbGrid, RealD mass, RealD M5,
-                    GridParallelRNG *RNG4, GridParallelRNG *RNG5)
+                    GridRedBlackCartesian *UrbGrid, GridParallelRNG *RNG4,
+                    GridParallelRNG *RNG5)
 {
   PropagatorField<Action> phys_src(UGrid);
   PropagatorField<Action> seqsrc(FGrid), seqsrcalt(FGrid), diff(FGrid);
@@ -90,6 +101,50 @@ void testRegression(Action &Ddwf, GaugeField<Action> &Umu, GridCartesian *FGrid,
             << " -- time= " << time / 1.0e6 << "s" << std::endl;
   diff = seqsrcalt - seqsrc;
   std::cout << GridLogMessage << "rel diff norm2= " << norm2(diff) / norm2(seqsrc)
+            << std::endl;
+}
+
+template <class Action>
+void testDerivative(Action &Ddwf, GaugeField<Action> &Umu, GridCartesian *FGrid,
+                    GridRedBlackCartesian *FrbGrid, GridCartesian *UGrid,
+                    GridRedBlackCartesian *UrbGrid, GridParallelRNG *RNG4,
+                    GridParallelRNG *RNG5)
+{
+  const int mu_J = 0;
+  int L_mu = UGrid->GlobalDimensions()[mu_J];
+  int nt = UGrid->GlobalDimensions()[Nd - 1];
+  const double eps = 1.0e-3;
+  std::vector<double> twist(Nd, 0.);
+  typename Action::ImplParams implParams;
+  PropagatorField<Action> phys_src(UGrid), prop5(FGrid), prop4(UGrid), prop5t(FGrid),
+      prop4t(UGrid), seqsrc(FGrid), seqprop5(FGrid), seqprop4(UGrid);
+  ComplexField<Action> ph(UGrid);
+  auto curr = Current::Vector;
+
+  ph = std::complex(0.0, -1.0);
+  random(*RNG4, phys_src);
+
+  std::cout << GridLogMessage << SEP << " untwisted propagator" << std::endl;
+  computePropagator(prop5, prop4, phys_src, Ddwf);
+  std::cout << GridLogMessage << SEP << " sequential propagator" << std::endl;
+  seqConservedCurrent(prop5, seqsrc, phys_src, curr, mu_J, 0, nt - 1, ph, Ddwf);
+  computePropagator(seqprop5, seqprop4, seqsrc, Ddwf);
+  std::cout << GridLogMessage << SEP << " twisted propagator" << std::endl;
+  implParams.twist_n_2pi_L[mu_J] = eps;
+  Ddwf.Params = implParams;
+  Ddwf.ImportGauge(Umu);
+  computePropagator(prop5t, prop4t, phys_src, Ddwf);
+  implParams.twist_n_2pi_L[mu_J] = 0.;
+  Ddwf.Params = implParams;
+  Ddwf.ImportGauge(Umu);
+  prop5 = (1. / (eps * (2. * M_PI) / L_mu)) * (prop5t - prop5);
+  std::cout << GridLogMessage << SEP << " results" << std::endl;
+  std::cout << GridLogMessage << "Numerical derivative -- norm2= " << norm2(prop5)
+            << " epsilon= " << eps * (2. * M_PI) / L_mu << std::endl;
+  std::cout << GridLogMessage << "Sequential insertion -- norm2= " << norm2(seqprop5)
+            << std::endl;
+  std::cout << GridLogMessage << "Diff -- norm2_abs= " << norm2(prop5 - seqprop5)
+            << " norm2_rel= " << 2.0 * norm2(prop5 - seqprop5) / norm2(prop5 + seqprop5)
             << std::endl;
 }
 
@@ -134,21 +189,26 @@ int main(int argc, char **argv)
   RealD mass = 0.3;
   RealD M5 = 1.0;
 
-  std::cout << GridLogMessage << "-- DWF regression test" << std::endl;
+  std::cout << GridLogMessage << BIG_SEP << " DWF regression test" << std::endl;
   DomainWallFermionD Ddwf(Umu, *FGrid, *FrbGrid, *UGrid, *UrbGrid, mass, M5);
-  testRegression<DomainWallFermionD>(Ddwf, Umu, FGrid, FrbGrid, UGrid, UrbGrid, mass, M5,
-                                     &RNG4, &RNG5);
+  testRegression(Ddwf, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5);
 
-  std::cout << GridLogMessage << "-- Moebius DWF regression test" << std::endl;
+  std::cout << GridLogMessage << BIG_SEP << " Moebius DWF regression test" << std::endl;
   ScaledShamirFermionD Dsham(Umu, *FGrid, *FrbGrid, *UGrid, *UrbGrid, mass, M5, 2.0);
-  testRegression<ScaledShamirFermionD>(Dsham, Umu, FGrid, FrbGrid, UGrid, UrbGrid, mass,
-                                       M5, &RNG4, &RNG5);
+  testRegression(Dsham, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5);
 
-  std::cout << GridLogMessage << "-- z-Moebius DWF regression test" << std::endl;
+  std::cout << GridLogMessage << BIG_SEP << " z-Moebius DWF regression test" << std::endl;
   ZMobiusFermionD ZDmob(Umu, *FGrid, *FrbGrid, *UGrid, *UrbGrid, mass, M5, omegas, 1.0,
                         0.0);
-  testRegression<ZMobiusFermionD>(ZDmob, Umu, FGrid, FrbGrid, UGrid, UrbGrid, mass, M5,
-                                  &RNG4, &RNG5);
+  testRegression(ZDmob, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5);
+
+  std::cout << GridLogMessage << BIG_SEP << " DWF perturbative test" << std::endl;
+  testDerivative(Ddwf, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5);
+  std::cout << GridLogMessage << BIG_SEP << " Moebius DWF perturbative test" << std::endl;
+  testDerivative(Dsham, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5);
+  std::cout << GridLogMessage << BIG_SEP << " z-Moebius DWF perturbative test"
+            << std::endl;
+  testDerivative(ZDmob, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5);
 
   Grid_finalize();
 
