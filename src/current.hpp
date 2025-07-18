@@ -22,19 +22,44 @@
 
 #include <Grid/Grid.h>
 
+//-------------------------------------------------------------------------------------
+// Macro to to multiply 4D field by Wilon current
+//-------------------------------------------------------------------------------------
+//
+// qout = JW_mu * qin
+//
+// qin: input quark (4D)
+// qout: output quark (5D)
+// sign: global sign
+// csign: current sign (e.g. 1 for vector, -1 for tadpole)
+// ph: current momentum phase
+//
+// cut in time to [tmin, tmax]
+//
+// qout(x) = - 0.5 * csign * sign * ph(x) * (1-gamma_mu) * U_mu(x) * qin(x+mu)
+//           + 0.5 * sign * (1+gamma_mu) * U_mu^dag(x-mu) * ph(x-mu) * qin(x-mu)
+//
+// NB: ImportGauge multiplies links by -1/2, so multLinkField multiplies by -0.5*U_mu
+//
 #define JWMultiply(qout, qin, sign)                      \
   jtmp = Cshift(qin, mu, 1);                             \
   action.multLinkField(Utmp, action.Umu, jtmp, mu);      \
-  jtmp = (sign) * (Utmp * ph - gmu * Utmp * ph);         \
-  jtmp = where((lcoor >= tmin), jtmp, zz);               \
-  jtmp = where((lcoor <= tmax), jtmp, zz);               \
+  jtmp = csign * (sign) * (Utmp * ph - gmu * Utmp * ph); \
+  if (doCut)                                             \
+  {                                                      \
+    jtmp = where((lcoor >= tmin), jtmp, zz);             \
+    jtmp = where((lcoor <= tmax), jtmp, zz);             \
+  }                                                      \
   qout = jtmp;                                           \
   jtmp = qin * ph;                                       \
   jtmp = Cshift(jtmp, mu, -1);                           \
   action.multLinkField(Utmp, action.Umu, jtmp, mu + Nd); \
   jtmp = -(sign) * (Utmp + gmu * Utmp);                  \
-  jtmp = where((lcoor >= tmin + tshift), jtmp, zz);      \
-  jtmp = where((lcoor <= tmax + tshift), jtmp, zz);      \
+  if (doCut)                                             \
+  {                                                      \
+    jtmp = where((lcoor >= tmin + tshift), jtmp, zz);    \
+    jtmp = where((lcoor <= tmax + tshift), jtmp, zz);    \
+  }                                                      \
   qout = qout + jtmp;
 
 #define Gs(s) ((curr_type == Current::Axial) ? (((s) < Ls / 2) ? -1. : 1.) : 1.)
@@ -53,6 +78,24 @@ using GaugeField = typename FImpl::GaugeField;
 template <typename FImpl>
 using ComplexField = typename FImpl::ComplexField;
 
+//-------------------------------------------------------------------------------------
+// Conserved current multiplication
+//-------------------------------------------------------------------------------------
+// q_out = Gs * JW_mu * Omega * ph * q_in + C * JW_mu * ph * eta5$
+// with eta5 = (P+ * phys_src, 0, ..., 0, P- * phys_src)
+//
+// vector current: Gs = 1, JW_mu is Wilson vector current
+// axial current: Gs = diag(-1, ..., -1, 1, ..., 1), JW_mu is Wilson vector current
+// tadpole current: Gs = 1, JW_mu is Wilson tadpole current
+//
+// cut in time to [tmin, tmax]
+//
+// q_in: input propagator
+// q_out: output propagator
+// phys_src: physical 4D source
+// curr_type: current type (Current::Vector/Axial/Tadpole)
+// ph: current momentum phase
+//
 template <typename FImpl, template <typename> class Action>
 void seqConservedCurrent(PropagatorField<FImpl> &q_in, PropagatorField<FImpl> &q_out,
                          PropagatorField<FImpl> &phys_src, Grid::Current curr_type,
@@ -62,8 +105,10 @@ void seqConservedCurrent(PropagatorField<FImpl> &q_in, PropagatorField<FImpl> &q
 {
   using namespace Grid;
 
-  int tshift = (mu == Grid::Nd - 1) ? 1 : 0;
-  int Ls = action.Ls;
+  const unsigned int nd = q_in.Grid()->Nd(), nt = q_in.Grid()->GlobalDimensions()[nd - 1];
+  const unsigned int Ls = action.Ls, tshift = (mu == nd - 1) ? 1 : 0;
+  const int csign = (curr_type == Current::Tadpole) ? -1 : 1;
+  const bool doCut = ((tmin != 0) || (tmax != nt - 1));
   auto UGrid = action.GaugeGrid();
   auto FGrid = action.FermionGrid();
   auto mass = action.Mass();
@@ -87,6 +132,8 @@ void seqConservedCurrent(PropagatorField<FImpl> &q_in, PropagatorField<FImpl> &q
   {
     ExtractSlice(phi[s], q_in, s, 0);
   }
+
+  // q_out = Gs * JW_mu * Omega * ph * q_in
   auto b = action.bs[0];
   auto c = action.cs[0];
   tmp1 = b * phi[0] + c * Pm(phi[1]) - mass * c * Pp(phi[Ls - 1]);
@@ -105,6 +152,8 @@ void seqConservedCurrent(PropagatorField<FImpl> &q_in, PropagatorField<FImpl> &q
   tmp1 = -mass * c * Pm(phi[0]) + c * Pp(phi[Ls - 2]) + b * phi[Ls - 1];
   JWMultiply(tmp2, tmp1, Gs(Ls - 1));
   InsertSlice(tmp2, q_out, Ls - 1, 0);
+
+  // q_out += C * JW_mu * ph * eta5
   tmp1 = action.cs[0] * Pp(phys_src);
   JWMultiply(tmp2, tmp1, Gs(0));
   ExtractSlice(srcTerm, q_out, 0, 0);

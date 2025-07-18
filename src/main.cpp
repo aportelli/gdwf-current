@@ -28,6 +28,14 @@
 
 using namespace Grid;
 
+template <typename Field>
+void compare(const Field &a, const Field &b)
+{
+  std::cout << GridLogMessage << "Diff -- norm_abs= " << sqrt(norm2(a - b))
+            << " norm_rel= " << 2.0 * sqrt(norm2(a - b)) / sqrt(norm2(a + b))
+            << std::endl;
+}
+
 template <typename Action>
 void computePropagator(PropagatorField<Action> &prop5, PropagatorField<Action> &prop4,
                        PropagatorField<Action> &src, Action &action)
@@ -99,53 +107,92 @@ void testRegression(Action &Ddwf, GaugeField<Action> &Umu, GridCartesian *FGrid,
   time += usecond();
   std::cout << GridLogMessage << "this implementation -- norm2= " << norm2(seqsrcalt)
             << " -- time= " << time / 1.0e6 << "s" << std::endl;
-  diff = seqsrcalt - seqsrc;
-  std::cout << GridLogMessage << "rel diff norm2= " << norm2(diff) / norm2(seqsrc)
-            << std::endl;
+  compare(seqsrc, seqsrcalt);
 }
 
 template <class Action>
 void testDerivative(Action &Ddwf, GaugeField<Action> &Umu, GridCartesian *FGrid,
                     GridRedBlackCartesian *FrbGrid, GridCartesian *UGrid,
                     GridRedBlackCartesian *UrbGrid, GridParallelRNG *RNG4,
-                    GridParallelRNG *RNG5)
+                    GridParallelRNG *RNG5, const double eps)
 {
   const int mu_J = 0;
   int L_mu = UGrid->GlobalDimensions()[mu_J];
   int nt = UGrid->GlobalDimensions()[Nd - 1];
-  const double eps = 1.0e-3;
+  const double theta = eps * L_mu / (2 * M_PI);
   std::vector<double> twist(Nd, 0.);
-  typename Action::ImplParams implParams;
-  PropagatorField<Action> phys_src(UGrid), prop5(FGrid), prop4(UGrid), prop5t(FGrid),
-      prop4t(UGrid), seqsrc(FGrid), seqprop5(FGrid), seqprop4(UGrid);
-  ComplexField<Action> ph(UGrid);
-  auto curr = Current::Vector;
+  typename Action::ImplParams implParams, backup;
+  PropagatorField<Action> phys_src(UGrid), z_src(UGrid), prop5(FGrid), prop5pt(FGrid),
+      prop5mt(FGrid), seqsrc(FGrid), seqsrcT(FGrid), seqprop5(FGrid), seq2prop5(FGrid),
+      d1prop5(FGrid), d2prop5(FGrid), dump4(UGrid);
+  ComplexField<Action> miph(UGrid), uph(UGrid);
+  auto vec = Current::Vector, tad = Current::Tadpole;
 
-  ph = std::complex(0.0, -1.0);
+  uph = std::complex(1.0, 0.0);
+  miph = std::complex(0.0, -1.0);
   random(*RNG4, phys_src);
+  backup = Ddwf.Params;
+  z_src = Zero();
 
   std::cout << GridLogMessage << SEP << " untwisted propagator" << std::endl;
-  computePropagator(prop5, prop4, phys_src, Ddwf);
-  std::cout << GridLogMessage << SEP << " sequential propagator" << std::endl;
-  seqConservedCurrent(prop5, seqsrc, phys_src, curr, mu_J, 0, nt - 1, ph, Ddwf);
-  computePropagator(seqprop5, seqprop4, seqsrc, Ddwf);
-  std::cout << GridLogMessage << SEP << " twisted propagator" << std::endl;
-  implParams.twist_n_2pi_L[mu_J] = eps;
+  // prop5 = S*eta5, eta5 = (P+ * phys_src, 0, ..., 0, P- * phys_src)
+  computePropagator(prop5, dump4, phys_src, Ddwf);
+  std::cout << GridLogMessage << SEP << " sequential propagators" << std::endl;
+  // seqsrc = -i*( JW_mu * Omega * prop5 + C * JW_mu * eta5 )
+  //        = -i*( JW_mu * Omega * S * eta5 + C * JW_mu * eta5 )
+  seqConservedCurrent(prop5, seqsrc, phys_src, vec, mu_J, 0, nt - 1, miph, Ddwf);
+  // seqprop5 = -i*( SB * JW_mu * Omega * S * eta5 + SB * C * JW_mu * eta5 )
+  computePropagator(seqprop5, dump4, seqsrc, Ddwf);
+  std::cout << GridLogMessage << SEP << " double sequential propagator" << std::endl;
+  // seqsrc = -( JW_mu * Omega * SB * JW_mu * Omega * S * eta5
+  //             + JW_mu * Omega * SB * C * JW_mu * eta5 )
+  seqConservedCurrent(seqprop5, seqsrc, z_src, vec, mu_J, 0, nt - 1, miph, Ddwf);
+  // seqsrcT = TW_mu * Omega * S * eta5 + C * TW_mu * eta5
+  seqConservedCurrent(prop5, seqsrcT, phys_src, tad, mu_J, 0, nt - 1, uph, Ddwf);
+  // seqsrc = -2*( JW_mu * Omega * SB * JW_mu * Omega * S * eta5
+  //               + JW_mu * Omega * SB * C * JW_mu * eta5 )
+  //          - TW_mu * Omega * S * eta5 - C * TW_mu * eta5
+  seqsrc = seqsrc - 0.5 * seqsrcT;
+  // seq2prop5 = -( SB * JW_mu * Omega * SB * JW_mu * Omega * S * eta5
+  //                  + SB * JW_mu * Omega * SB * C * JW_mu * eta5 )
+  //             - 0.5 * ( SB * TW_mu * Omega * S * eta5 - SB * C * TW_mu * eta5 )
+  computePropagator(seq2prop5, dump4, seqsrc, Ddwf);
+  std::cout << GridLogMessage << SEP << " twisted propagator +epsilon" << std::endl;
+  // S(theta): propagator with links V_mu = exp(i*theta) U_mu in direction mu_J
+  // prop5pt = S(+eps) * eta5
+  implParams.twist_n_2pi_L[mu_J] = theta;
   Ddwf.Params = implParams;
   Ddwf.ImportGauge(Umu);
-  computePropagator(prop5t, prop4t, phys_src, Ddwf);
-  implParams.twist_n_2pi_L[mu_J] = 0.;
+  computePropagator(prop5pt, dump4, phys_src, Ddwf);
+  // prop5pt = S(-eps) * eta5
+  std::cout << GridLogMessage << SEP << " twisted propagator -epsilon" << std::endl;
+  implParams.twist_n_2pi_L[mu_J] = -theta;
   Ddwf.Params = implParams;
   Ddwf.ImportGauge(Umu);
-  prop5 = (1. / (eps * (2. * M_PI) / L_mu)) * (prop5t - prop5);
+  computePropagator(prop5mt, dump4, phys_src, Ddwf);
+  Ddwf.Params = backup;
+  Ddwf.ImportGauge(Umu);
+  // d1prop5 = (S(+eps) * eta5 - S(-eps) * eta5) / (2*eps)
+  //         = dS/deps * eta + O(eps^2)
+  d1prop5 = (0.5 / eps) * (prop5pt - prop5mt);
+  // d1prop5 = (S(+eps) * eta5 + S(-eps) * eta5 - 2 * S(0) * eta5) / (2*eps^2)
+  //         = 0.5 * d^2S/deps^2 * eta + O(eps^2)
+  d2prop5 = (0.5 / eps / eps) * (prop5pt + prop5mt - 2. * prop5);
   std::cout << GridLogMessage << SEP << " results" << std::endl;
-  std::cout << GridLogMessage << "Numerical derivative -- norm2= " << norm2(prop5)
-            << " epsilon= " << eps * (2. * M_PI) / L_mu << std::endl;
-  std::cout << GridLogMessage << "Sequential insertion -- norm2= " << norm2(seqprop5)
+  std::cout << GridLogMessage
+            << "1st order numerical derivative -- norm2= " << norm2(d1prop5)
+            << " epsilon= " << eps << std::endl;
+  std::cout << GridLogMessage
+            << "1st order sequential insertion -- norm2= " << norm2(seqprop5)
             << std::endl;
-  std::cout << GridLogMessage << "Diff -- norm2_abs= " << norm2(prop5 - seqprop5)
-            << " norm2_rel= " << 2.0 * norm2(prop5 - seqprop5) / norm2(prop5 + seqprop5)
+  compare(d1prop5, seqprop5);
+  std::cout << GridLogMessage
+            << "2nd order numerical derivative -- norm2= " << norm2(d2prop5)
+            << " epsilon= " << eps << std::endl;
+  std::cout << GridLogMessage
+            << "2nd order sequential insertion -- norm2= " << norm2(seq2prop5)
             << std::endl;
+  compare(d2prop5, seq2prop5);
 }
 
 int main(int argc, char **argv)
@@ -203,12 +250,12 @@ int main(int argc, char **argv)
   testRegression(ZDmob, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5);
 
   std::cout << GridLogMessage << BIG_SEP << " DWF perturbative test" << std::endl;
-  testDerivative(Ddwf, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5);
+  testDerivative(Ddwf, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5, 1.0e-2);
   std::cout << GridLogMessage << BIG_SEP << " Moebius DWF perturbative test" << std::endl;
-  testDerivative(Dsham, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5);
+  testDerivative(Dsham, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5, 1.0e-2);
   std::cout << GridLogMessage << BIG_SEP << " z-Moebius DWF perturbative test"
             << std::endl;
-  testDerivative(ZDmob, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5);
+  testDerivative(ZDmob, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5, 1.0e-2);
 
   Grid_finalize();
 
