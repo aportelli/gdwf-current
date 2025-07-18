@@ -23,7 +23,7 @@
 #include <Grid/Grid.h>
 
 //-------------------------------------------------------------------------------------
-// Macro to to multiply 4D field by Wilon current
+// Macro to multiply 4D field by Wilon current
 //-------------------------------------------------------------------------------------
 //
 // qout = JW_mu * qin
