@@ -27,4 +27,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
 
-add_subdirectory(src)
+find_package(Grid REQUIRED)
+
+add_executable(${APP_NAME} src/main.cpp src/current.hpp)
+target_link_libraries(${APP_NAME} PRIVATE Grid::Grid)
+
+install(TARGETS ${APP_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
