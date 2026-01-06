@@ -114,7 +114,7 @@ template <class Action>
 void testDerivative(Action &Ddwf, GaugeField<Action> &Umu, GridCartesian *FGrid,
                     GridRedBlackCartesian *FrbGrid, GridCartesian *UGrid,
                     GridRedBlackCartesian *UrbGrid, GridParallelRNG *RNG4,
-                    GridParallelRNG *RNG5, const double eps)
+                    const double eps)
 {
   const int mu_J = 0;
   int L_mu = UGrid->GlobalDimensions()[mu_J];
@@ -197,7 +197,25 @@ void testDerivative(Action &Ddwf, GaugeField<Action> &Umu, GridCartesian *FGrid,
 
 int main(int argc, char **argv)
 {
+  double eps = 1.0e-2;
+
   Grid_init(&argc, &argv);
+  for (int i = 0; i < argc; ++i)
+  {
+    auto arg = std::string(argv[i]);
+
+    if (arg == "--epsilon")
+    {
+      if (i == (argc - 1))
+      {
+        std::cout << GridLogError << "No argument provided for --epsilon" << std::endl;
+        exit(EXIT_FAILURE);
+      }
+      ++i;
+      std::string arg2 = std::string(argv[i]);
+      eps = std::stof(arg2);
+    }
+  }
 
   int threads = GridThread::GetThreads();
   std::cout << GridLogMessage << "Grid is setup to use " << threads << " threads"
@@ -249,13 +267,17 @@ int main(int argc, char **argv)
                         0.0);
   testRegression(ZDmob, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5);
 
+  seeds4 = {9, 10, 11, 12};
   std::cout << GridLogMessage << BIG_SEP << " DWF perturbative test" << std::endl;
-  testDerivative(Ddwf, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5, 1.0e-2);
+  RNG4.SeedFixedIntegers(seeds4);
+  testDerivative(Ddwf, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, eps);
   std::cout << GridLogMessage << BIG_SEP << " Moebius DWF perturbative test" << std::endl;
-  testDerivative(Dsham, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5, 1.0e-2);
+  RNG4.SeedFixedIntegers(seeds4);
+  testDerivative(Dsham, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, eps);
   std::cout << GridLogMessage << BIG_SEP << " z-Moebius DWF perturbative test"
             << std::endl;
-  testDerivative(ZDmob, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, &RNG5, 1.0e-2);
+  RNG4.SeedFixedIntegers(seeds4);
+  testDerivative(ZDmob, Umu, FGrid, FrbGrid, UGrid, UrbGrid, &RNG4, eps);
 
   Grid_finalize();
 
