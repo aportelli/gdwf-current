@@ -175,7 +175,7 @@ void testDerivative(Action &Ddwf, GaugeField<Action> &Umu, GridCartesian *FGrid,
   // d1prop5 = (S(+eps) * eta5 - S(-eps) * eta5) / (2*eps)
   //         = dS/deps * eta + O(eps^2)
   d1prop5 = (0.5 / eps) * (prop5pt - prop5mt);
-  // d1prop5 = (S(+eps) * eta5 + S(-eps) * eta5 - 2 * S(0) * eta5) / (2*eps^2)
+  // d2prop5 = (S(+eps) * eta5 + S(-eps) * eta5 - 2 * S(0) * eta5) / (2*eps^2)
   //         = 0.5 * d^2S/deps^2 * eta + O(eps^2)
   d2prop5 = (0.5 / eps / eps) * (prop5pt + prop5mt - 2. * prop5);
   std::cout << GridLogMessage << SEP << " results" << std::endl;
