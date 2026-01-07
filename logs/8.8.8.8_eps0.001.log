@@ -1,0 +1,831 @@
+SharedMemoryMpi:  World communicator of size 1
+SharedMemoryMpi:  Node  communicator of size 1
+SharedMemoryMpi: SharedMemoryAllocate 1073741824 MMAP anonymous implementation 
+
+__|__|__|__|__|__|__|__|__|__|__|__|__|__|__
+__|__|__|__|__|__|__|__|__|__|__|__|__|__|__
+__|_ |  |  |  |  |  |  |  |  |  |  |  | _|__
+__|_                                    _|__
+__|_   GGGG    RRRR    III    DDDD      _|__
+__|_  G        R   R    I     D   D     _|__
+__|_  G        R   R    I     D    D    _|__
+__|_  G  GG    RRRR     I     D    D    _|__
+__|_  G   G    R  R     I     D   D     _|__
+__|_   GGGG    R   R   III    DDDD      _|__
+__|_                                    _|__
+__|__|__|__|__|__|__|__|__|__|__|__|__|__|__
+__|__|__|__|__|__|__|__|__|__|__|__|__|__|__
+  |  |  |  |  |  |  |  |  |  |  |  |  |  |  
+
+
+Copyright (C) 2015 Peter Boyle, Azusa Yamaguchi, Guido Cossu, Antonin Portelli and other authors
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+Current Grid git commit hash=4a0aaf07868a39ffafffba7496c75a3c03bc7aab: (HEAD -> develop, gh/develop, gh/HEAD) uncommited changes
+
+Grid : Message : ================================================ 
+Grid : Message : MPI is initialised and logging filters activated 
+Grid : Message : ================================================ 
+Grid : Message : This rank is running on host Ummon.local at local time 2026-01-06 12:39:19
+Grid : Message : Requested 1073741824 byte stencil comms buffers 
+Grid : Message : MemoryManager::Init() setting up
+Grid : Message : MemoryManager::Init() cache pool for recent host   allocations: SMALL 8 LARGE 2 HUGE 0
+Grid : Message : MemoryManager::Init() cache pool for recent device allocations: SMALL 16 LARGE 8 Huge 0
+Grid : Message : MemoryManager::Init() cache pool for recent shared allocations: SMALL 16 LARGE 8 Huge 0
+Grid : Message : MemoryManager::Init() Unified memory space
+Grid : Message : 0.398700 s : Grid Default Decomposition patterns
+Grid : Message : 0.399000 s : 	OpenMP threads : 10
+Grid : Message : 0.399800 s : 	MPI tasks      : 1 1 1 1 
+Grid : Message : 0.400300 s : 	vRealF         : 128bits ; 1 1 2 2 
+Grid : Message : 0.401000 s : 	vRealD         : 128bits ; 1 1 1 2 
+Grid : Message : 0.401400 s : 	vComplexF      : 128bits ; 1 1 1 2 
+Grid : Message : 0.401800 s : 	vComplexD      : 128bits ; 1 1 1 1 
+Grid : Message : 0.402500 s : Grid is setup to use 10 threads
+Grid : Message : 0.683830 s : ==================== DWF regression test
+Grid : Message : 0.937940 s : Grid implementation -- norm2= 491417.428 -- time= 0.722186s
+Grid : Message : 2.109098 s : this implementation -- norm2= 491417.428 -- time= 1.13536s
+Grid : Message : 2.143634 s : Diff -- norm_abs= 0 norm_rel= 0
+Grid : Message : 2.269060 s : ==================== Moebius DWF regression test
+Grid : Message : 3.139946 s : Grid implementation -- norm2= 1758503.58 -- time= 0.724891s
+Grid : Message : 4.320490 s : this implementation -- norm2= 1758503.58 -- time= 1.145788s
+Grid : Message : 4.355877 s : Diff -- norm_abs= 8.15155669e-14 norm_rel= 6.14708085e-17
+Grid : Message : 4.483940 s : ==================== z-Moebius DWF regression test
+Grid : Message : 5.345000 s : Grid implementation -- norm2= 19210884.6 -- time= 0.714976s
+Grid : Message : 6.497420 s : this implementation -- norm2= 19210884.6 -- time= 1.117973s
+Grid : Message : 6.532389 s : Diff -- norm_abs= 3.26105419e-13 norm_rel= 7.44019526e-17
+Grid : Message : 6.657975 s : ==================== DWF perturbative test
+Grid : Message : 6.671475 s : -------------------- untwisted propagator
+Grid : Message : 7.641687 s : ConjugateGradient Converged on iteration 69	Computed residual 6.08896238e-17	True residual 5.08405567e-16	Target 1e-16
+Grid : Message : 7.641734 s : 	Solver Elapsed    0.941299 s
+Grid : Message : 7.655488 s : SchurRedBlackBase solver true unprec resid 4.40148452e-16
+Grid : Message : 7.655516 s : spin 0 color 0 norm2(src5d) 32629.0728 norm2(result5d) 3889.54704
+Grid : Message : 8.673029 s : ConjugateGradient Converged on iteration 69	Computed residual 6.13395684e-17	True residual 5.08636833e-16	Target 1e-16
+Grid : Message : 8.673050 s : 	Solver Elapsed    0.979813 s
+Grid : Message : 8.690138 s : SchurRedBlackBase solver true unprec resid 4.39886788e-16
+Grid : Message : 8.690152 s : spin 0 color 1 norm2(src5d) 32862.8545 norm2(result5d) 3892.76889
+Grid : Message : 10.816800 s : ConjugateGradient Converged on iteration 69	Computed residual 6.20586516e-17	True residual 5.10333637e-16	Target 1e-16
+Grid : Message : 10.818600 s : 	Solver Elapsed    1.269368 s
+Grid : Message : 10.254720 s : SchurRedBlackBase solver true unprec resid 4.40787081e-16
+Grid : Message : 10.257820 s : spin 0 color 2 norm2(src5d) 32932.6083 norm2(result5d) 3905.21255
+Grid : Message : 11.420261 s : ConjugateGradient Converged on iteration 69	Computed residual 6.32635396e-17	True residual 5.08195153e-16	Target 1e-16
+Grid : Message : 11.420287 s : 	Solver Elapsed    1.349067 s
+Grid : Message : 11.436141 s : SchurRedBlackBase solver true unprec resid 4.3931446e-16
+Grid : Message : 11.436171 s : spin 1 color 0 norm2(src5d) 32810.9355 norm2(result5d) 3891.98786
+Grid : Message : 12.440870 s : ConjugateGradient Converged on iteration 69	Computed residual 6.17814436e-17	True residual 5.12426888e-16	Target 1e-16
+Grid : Message : 12.440903 s : 	Solver Elapsed    0.967216 s
+Grid : Message : 12.454901 s : SchurRedBlackBase solver true unprec resid 4.42162827e-16
+Grid : Message : 12.454931 s : spin 1 color 1 norm2(src5d) 32606.0375 norm2(result5d) 3862.9851
+Grid : Message : 13.454592 s : ConjugateGradient Converged on iteration 69	Computed residual 6.27730242e-17	True residual 5.09094168e-16	Target 1e-16
+Grid : Message : 13.454631 s : 	Solver Elapsed    0.963687 s
+Grid : Message : 13.468802 s : SchurRedBlackBase solver true unprec resid 4.39862935e-16
+Grid : Message : 13.468829 s : spin 1 color 2 norm2(src5d) 32646.0549 norm2(result5d) 3878.82568
+Grid : Message : 14.440827 s : ConjugateGradient Converged on iteration 69	Computed residual 6.00871637e-17	True residual 5.02120315e-16	Target 1e-16
+Grid : Message : 14.440857 s : 	Solver Elapsed    0.933263 s
+Grid : Message : 14.454420 s : SchurRedBlackBase solver true unprec resid 4.3699909e-16
+Grid : Message : 14.454441 s : spin 2 color 0 norm2(src5d) 32777.0869 norm2(result5d) 3858.70118
+Grid : Message : 15.426912 s : ConjugateGradient Converged on iteration 69	Computed residual 6.14105673e-17	True residual 5.13305903e-16	Target 1e-16
+Grid : Message : 15.426945 s : 	Solver Elapsed    0.936287 s
+Grid : Message : 15.442506 s : SchurRedBlackBase solver true unprec resid 4.42436908e-16
+Grid : Message : 15.442535 s : spin 2 color 1 norm2(src5d) 32894.7068 norm2(result5d) 3913.41816
+Grid : Message : 16.409627 s : ConjugateGradient Converged on iteration 69	Computed residual 6.30757385e-17	True residual 5.11190961e-16	Target 1e-16
+Grid : Message : 16.409657 s : 	Solver Elapsed    0.932012 s
+Grid : Message : 16.423225 s : SchurRedBlackBase solver true unprec resid 4.4181268e-16
+Grid : Message : 16.423255 s : spin 2 color 2 norm2(src5d) 32883.3555 norm2(result5d) 3897.53219
+Grid : Message : 17.395753 s : ConjugateGradient Converged on iteration 69	Computed residual 6.28072059e-17	True residual 5.13303497e-16	Target 1e-16
+Grid : Message : 17.395781 s : 	Solver Elapsed    0.933414 s
+Grid : Message : 17.411232 s : SchurRedBlackBase solver true unprec resid 4.42773258e-16
+Grid : Message : 17.411259 s : spin 3 color 0 norm2(src5d) 32883.9308 norm2(result5d) 3910.04174
+Grid : Message : 18.381148 s : ConjugateGradient Converged on iteration 69	Computed residual 6.02566804e-17	True residual 5.0311941e-16	Target 1e-16
+Grid : Message : 18.381173 s : 	Solver Elapsed    0.934682 s
+Grid : Message : 18.394877 s : SchurRedBlackBase solver true unprec resid 4.36810457e-16
+Grid : Message : 18.394904 s : spin 3 color 1 norm2(src5d) 32848.5104 norm2(result5d) 3890.6378
+Grid : Message : 19.373109 s : ConjugateGradient Converged on iteration 69	Computed residual 6.04592531e-17	True residual 5.08108844e-16	Target 1e-16
+Grid : Message : 19.373146 s : 	Solver Elapsed    0.942159 s
+Grid : Message : 19.387153 s : SchurRedBlackBase solver true unprec resid 4.40109299e-16
+Grid : Message : 19.387186 s : spin 3 color 2 norm2(src5d) 32784.6306 norm2(result5d) 3900.97893
+Grid : Message : 19.396912 s : -------------------- sequential propagators
+Grid : Message : 20.828608 s : ConjugateGradient Converged on iteration 69	Computed residual 8.82925595e-17	True residual 5.00888335e-16	Target 1e-16
+Grid : Message : 20.828642 s : 	Solver Elapsed    0.947685 s
+Grid : Message : 20.842539 s : SchurRedBlackBase solver true unprec resid 4.62642512e-16
+Grid : Message : 20.842569 s : spin 0 color 0 norm2(src5d) 3889.54704 norm2(result5d) 549.924523
+Grid : Message : 21.814712 s : ConjugateGradient Converged on iteration 69	Computed residual 8.96515857e-17	True residual 5.00878657e-16	Target 1e-16
+Grid : Message : 21.814746 s : 	Solver Elapsed    0.931284 s
+Grid : Message : 21.829069 s : SchurRedBlackBase solver true unprec resid 4.63173925e-16
+Grid : Message : 21.829097 s : spin 0 color 1 norm2(src5d) 3892.76889 norm2(result5d) 550.366886
+Grid : Message : 22.796051 s : ConjugateGradient Converged on iteration 69	Computed residual 8.7507644e-17	True residual 4.99848191e-16	Target 1e-16
+Grid : Message : 22.796085 s : 	Solver Elapsed    0.933247 s
+Grid : Message : 22.809673 s : SchurRedBlackBase solver true unprec resid 4.62900242e-16
+Grid : Message : 22.809701 s : spin 0 color 2 norm2(src5d) 3905.21255 norm2(result5d) 550.755754
+Grid : Message : 23.769025 s : ConjugateGradient Converged on iteration 69	Computed residual 8.89007421e-17	True residual 4.98019378e-16	Target 1e-16
+Grid : Message : 23.769053 s : 	Solver Elapsed    0.927652 s
+Grid : Message : 23.782464 s : SchurRedBlackBase solver true unprec resid 4.61974749e-16
+Grid : Message : 23.782494 s : spin 1 color 0 norm2(src5d) 3891.98786 norm2(result5d) 547.111906
+Grid : Message : 24.753844 s : ConjugateGradient Converged on iteration 69	Computed residual 8.54848639e-17	True residual 4.98777712e-16	Target 1e-16
+Grid : Message : 24.753878 s : 	Solver Elapsed    0.939161 s
+Grid : Message : 24.767295 s : SchurRedBlackBase solver true unprec resid 4.61420398e-16
+Grid : Message : 24.767326 s : spin 1 color 1 norm2(src5d) 3862.9851 norm2(result5d) 544.535273
+Grid : Message : 25.721033 s : ConjugateGradient Converged on iteration 69	Computed residual 8.76881195e-17	True residual 4.99935319e-16	Target 1e-16
+Grid : Message : 25.721078 s : 	Solver Elapsed    0.920037 s
+Grid : Message : 25.734609 s : SchurRedBlackBase solver true unprec resid 4.62684039e-16
+Grid : Message : 25.734638 s : spin 1 color 2 norm2(src5d) 3878.82568 norm2(result5d) 546.970692
+Grid : Message : 26.692249 s : ConjugateGradient Converged on iteration 69	Computed residual 8.64957948e-17	True residual 4.97425708e-16	Target 1e-16
+Grid : Message : 26.692281 s : 	Solver Elapsed    0.922554 s
+Grid : Message : 26.707668 s : SchurRedBlackBase solver true unprec resid 4.59781801e-16
+Grid : Message : 26.707697 s : spin 2 color 0 norm2(src5d) 3858.70118 norm2(result5d) 541.960178
+Grid : Message : 27.669074 s : ConjugateGradient Converged on iteration 69	Computed residual 8.83093453e-17	True residual 4.99262637e-16	Target 1e-16
+Grid : Message : 27.669106 s : 	Solver Elapsed    0.926942 s
+Grid : Message : 27.683116 s : SchurRedBlackBase solver true unprec resid 4.62010381e-16
+Grid : Message : 27.683147 s : spin 2 color 1 norm2(src5d) 3913.41816 norm2(result5d) 551.895869
+Grid : Message : 28.647177 s : ConjugateGradient Converged on iteration 69	Computed residual 8.46400256e-17	True residual 4.97796908e-16	Target 1e-16
+Grid : Message : 28.647207 s : 	Solver Elapsed    0.928279 s
+Grid : Message : 28.660759 s : SchurRedBlackBase solver true unprec resid 4.61561008e-16
+Grid : Message : 28.660786 s : spin 2 color 2 norm2(src5d) 3897.53219 norm2(result5d) 550.345271
+Grid : Message : 29.614851 s : ConjugateGradient Converged on iteration 69	Computed residual 8.84774457e-17	True residual 5.00252514e-16	Target 1e-16
+Grid : Message : 29.614884 s : 	Solver Elapsed    0.922614 s
+Grid : Message : 29.629958 s : SchurRedBlackBase solver true unprec resid 4.62648159e-16
+Grid : Message : 29.629982 s : spin 3 color 0 norm2(src5d) 3910.04174 norm2(result5d) 552.963735
+Grid : Message : 30.595460 s : ConjugateGradient Converged on iteration 69	Computed residual 8.85470262e-17	True residual 4.99493667e-16	Target 1e-16
+Grid : Message : 30.595487 s : 	Solver Elapsed    0.932259 s
+Grid : Message : 30.608928 s : SchurRedBlackBase solver true unprec resid 4.62629705e-16
+Grid : Message : 30.608958 s : spin 3 color 1 norm2(src5d) 3890.6378 norm2(result5d) 547.100717
+Grid : Message : 31.556850 s : ConjugateGradient Converged on iteration 69	Computed residual 8.85192985e-17	True residual 4.99183681e-16	Target 1e-16
+Grid : Message : 31.556874 s : 	Solver Elapsed    0.916516 s
+Grid : Message : 31.570420 s : SchurRedBlackBase solver true unprec resid 4.60526229e-16
+Grid : Message : 31.570443 s : spin 3 color 2 norm2(src5d) 3900.97893 norm2(result5d) 550.077234
+Grid : Message : 31.579291 s : -------------------- double sequential propagator
+Grid : Message : 33.522622 s : ConjugateGradient Converged on iteration 69	Computed residual 9.76713197e-17	True residual 5.39246522e-16	Target 1e-16
+Grid : Message : 33.522652 s : 	Solver Elapsed    0.952114 s
+Grid : Message : 33.536548 s : SchurRedBlackBase solver true unprec resid 5.11173119e-16
+Grid : Message : 33.536579 s : spin 0 color 0 norm2(src5d) 1905.14355 norm2(result5d) 346.983652
+Grid : Message : 34.523191 s : ConjugateGradient Converged on iteration 70	Computed residual 6.04131265e-17	True residual 5.39015623e-16	Target 1e-16
+Grid : Message : 34.523221 s : 	Solver Elapsed    0.947074 s
+Grid : Message : 34.536897 s : SchurRedBlackBase solver true unprec resid 5.0829012e-16
+Grid : Message : 34.536930 s : spin 0 color 1 norm2(src5d) 1907.21348 norm2(result5d) 347.862344
+Grid : Message : 35.508527 s : ConjugateGradient Converged on iteration 69	Computed residual 9.6083399e-17	True residual 5.40305162e-16	Target 1e-16
+Grid : Message : 35.508562 s : 	Solver Elapsed    0.939101 s
+Grid : Message : 35.522143 s : SchurRedBlackBase solver true unprec resid 5.11657157e-16
+Grid : Message : 35.522184 s : spin 0 color 2 norm2(src5d) 1909.87619 norm2(result5d) 347.923046
+Grid : Message : 36.487828 s : ConjugateGradient Converged on iteration 69	Computed residual 9.64125049e-17	True residual 5.39528864e-16	Target 1e-16
+Grid : Message : 36.487863 s : 	Solver Elapsed    0.933234 s
+Grid : Message : 36.501639 s : SchurRedBlackBase solver true unprec resid 5.11720566e-16
+Grid : Message : 36.501675 s : spin 1 color 0 norm2(src5d) 1893.56444 norm2(result5d) 344.722817
+Grid : Message : 37.479841 s : ConjugateGradient Converged on iteration 69	Computed residual 9.21255532e-17	True residual 5.40989196e-16	Target 1e-16
+Grid : Message : 37.479875 s : 	Solver Elapsed    0.944029 s
+Grid : Message : 37.495851 s : SchurRedBlackBase solver true unprec resid 5.11961719e-16
+Grid : Message : 37.495883 s : spin 1 color 1 norm2(src5d) 1886.83263 norm2(result5d) 342.793456
+Grid : Message : 38.534018 s : ConjugateGradient Converged on iteration 70	Computed residual 6.03962553e-17	True residual 5.3649194e-16	Target 1e-16
+Grid : Message : 38.534055 s : 	Solver Elapsed    1.004884 s
+Grid : Message : 38.547489 s : SchurRedBlackBase solver true unprec resid 5.06937325e-16
+Grid : Message : 38.547520 s : spin 1 color 2 norm2(src5d) 1894.13272 norm2(result5d) 344.507943
+Grid : Message : 39.641204 s : ConjugateGradient Converged on iteration 69	Computed residual 9.7136363e-17	True residual 5.37199785e-16	Target 1e-16
+Grid : Message : 39.641233 s : 	Solver Elapsed    1.055408 s
+Grid : Message : 39.659757 s : SchurRedBlackBase solver true unprec resid 5.10267056e-16
+Grid : Message : 39.659785 s : spin 2 color 0 norm2(src5d) 1879.35603 norm2(result5d) 340.006775
+Grid : Message : 40.708494 s : ConjugateGradient Converged on iteration 69	Computed residual 9.12764704e-17	True residual 5.40837053e-16	Target 1e-16
+Grid : Message : 40.708525 s : 	Solver Elapsed    1.007144 s
+Grid : Message : 40.723151 s : SchurRedBlackBase solver true unprec resid 5.12314026e-16
+Grid : Message : 40.723183 s : spin 2 color 1 norm2(src5d) 1912.54073 norm2(result5d) 348.632265
+Grid : Message : 41.748654 s : ConjugateGradient Converged on iteration 69	Computed residual 9.71896198e-17	True residual 5.40934549e-16	Target 1e-16
+Grid : Message : 41.748686 s : 	Solver Elapsed    0.990965 s
+Grid : Message : 41.763213 s : SchurRedBlackBase solver true unprec resid 5.13845224e-16
+Grid : Message : 41.763233 s : spin 2 color 2 norm2(src5d) 1907.01241 norm2(result5d) 347.965555
+Grid : Message : 42.734380 s : ConjugateGradient Converged on iteration 69	Computed residual 9.42584413e-17	True residual 5.40302423e-16	Target 1e-16
+Grid : Message : 42.734415 s : 	Solver Elapsed    0.937473 s
+Grid : Message : 42.747841 s : SchurRedBlackBase solver true unprec resid 5.12266514e-16
+Grid : Message : 42.747866 s : spin 3 color 0 norm2(src5d) 1914.68772 norm2(result5d) 349.369541
+Grid : Message : 43.727433 s : ConjugateGradient Converged on iteration 69	Computed residual 9.0486017e-17	True residual 5.3595362e-16	Target 1e-16
+Grid : Message : 43.727466 s : 	Solver Elapsed    0.946065 s
+Grid : Message : 43.740839 s : SchurRedBlackBase solver true unprec resid 5.07303683e-16
+Grid : Message : 43.740864 s : spin 3 color 1 norm2(src5d) 1896.43529 norm2(result5d) 343.318769
+Grid : Message : 44.732427 s : ConjugateGradient Converged on iteration 69	Computed residual 9.25909379e-17	True residual 5.39680079e-16	Target 1e-16
+Grid : Message : 44.732458 s : 	Solver Elapsed    0.955903 s
+Grid : Message : 44.746177 s : SchurRedBlackBase solver true unprec resid 5.11102053e-16
+Grid : Message : 44.746203 s : spin 3 color 2 norm2(src5d) 1904.82348 norm2(result5d) 345.549013
+Grid : Message : 44.755088 s : -------------------- twisted propagator +epsilon
+Grid : Message : 44.755365 s :  Twist [0] 0.00127323961 phase(1,0)
+Grid : Message : 45.750185 s : ConjugateGradient Converged on iteration 69	Computed residual 6.0874575e-17	True residual 5.12509778e-16	Target 1e-16
+Grid : Message : 45.750213 s : 	Solver Elapsed    0.961641 s
+Grid : Message : 45.763938 s : SchurRedBlackBase solver true unprec resid 4.42326989e-16
+Grid : Message : 45.763962 s : spin 0 color 0 norm2(src5d) 32629.0728 norm2(result5d) 3889.51443
+Grid : Message : 46.751736 s : ConjugateGradient Converged on iteration 69	Computed residual 6.13284855e-17	True residual 5.11366879e-16	Target 1e-16
+Grid : Message : 46.751752 s : 	Solver Elapsed    0.941803 s
+Grid : Message : 46.770365 s : SchurRedBlackBase solver true unprec resid 4.41482894e-16
+Grid : Message : 46.770387 s : spin 0 color 1 norm2(src5d) 32862.8545 norm2(result5d) 3892.73536
+Grid : Message : 47.916224 s : ConjugateGradient Converged on iteration 69	Computed residual 6.2050129e-17	True residual 5.08403924e-16	Target 1e-16
+Grid : Message : 47.916255 s : 	Solver Elapsed    1.108358 s
+Grid : Message : 47.929650 s : SchurRedBlackBase solver true unprec resid 4.40241024e-16
+Grid : Message : 47.929680 s : spin 0 color 2 norm2(src5d) 32932.6083 norm2(result5d) 3905.17369
+Grid : Message : 48.888868 s : ConjugateGradient Converged on iteration 69	Computed residual 6.32493576e-17	True residual 5.10100893e-16	Target 1e-16
+Grid : Message : 48.888914 s : 	Solver Elapsed    0.922397 s
+Grid : Message : 48.902485 s : SchurRedBlackBase solver true unprec resid 4.40602625e-16
+Grid : Message : 48.902505 s : spin 1 color 0 norm2(src5d) 32810.9355 norm2(result5d) 3891.95989
+Grid : Message : 49.894763 s : ConjugateGradient Converged on iteration 69	Computed residual 6.17661333e-17	True residual 5.06699564e-16	Target 1e-16
+Grid : Message : 49.894789 s : 	Solver Elapsed    0.951405 s
+Grid : Message : 49.915077 s : SchurRedBlackBase solver true unprec resid 4.38273764e-16
+Grid : Message : 49.915103 s : spin 1 color 1 norm2(src5d) 32606.0375 norm2(result5d) 3862.96253
+Grid : Message : 50.998127 s : ConjugateGradient Converged on iteration 69	Computed residual 6.27612646e-17	True residual 5.07702414e-16	Target 1e-16
+Grid : Message : 50.998159 s : 	Solver Elapsed    1.043349 s
+Grid : Message : 51.120780 s : SchurRedBlackBase solver true unprec resid 4.39498585e-16
+Grid : Message : 51.121040 s : spin 1 color 2 norm2(src5d) 32646.0549 norm2(result5d) 3878.81596
+Grid : Message : 51.956720 s : ConjugateGradient Converged on iteration 69	Computed residual 6.00835154e-17	True residual 5.04541152e-16	Target 1e-16
+Grid : Message : 51.956750 s : 	Solver Elapsed    0.910212 s
+Grid : Message : 51.972780 s : SchurRedBlackBase solver true unprec resid 4.38053171e-16
+Grid : Message : 51.972806 s : spin 2 color 0 norm2(src5d) 32777.0869 norm2(result5d) 3858.67359
+Grid : Message : 52.926257 s : ConjugateGradient Converged on iteration 69	Computed residual 6.13866184e-17	True residual 5.0865108e-16	Target 1e-16
+Grid : Message : 52.926286 s : 	Solver Elapsed    0.916807 s
+Grid : Message : 52.943631 s : SchurRedBlackBase solver true unprec resid 4.40885239e-16
+Grid : Message : 52.943651 s : spin 2 color 1 norm2(src5d) 32894.7068 norm2(result5d) 3913.40178
+Grid : Message : 53.900611 s : ConjugateGradient Converged on iteration 69	Computed residual 6.30672878e-17	True residual 5.08273177e-16	Target 1e-16
+Grid : Message : 53.900640 s : 	Solver Elapsed    0.921199 s
+Grid : Message : 53.914139 s : SchurRedBlackBase solver true unprec resid 4.41072098e-16
+Grid : Message : 53.914173 s : spin 2 color 2 norm2(src5d) 32883.3555 norm2(result5d) 3897.51194
+Grid : Message : 54.867320 s : ConjugateGradient Converged on iteration 69	Computed residual 6.27939947e-17	True residual 5.13237244e-16	Target 1e-16
+Grid : Message : 54.867341 s : 	Solver Elapsed    0.918505 s
+Grid : Message : 54.880894 s : SchurRedBlackBase solver true unprec resid 4.43525261e-16
+Grid : Message : 54.880919 s : spin 3 color 0 norm2(src5d) 32883.9308 norm2(result5d) 3910.00642
+Grid : Message : 55.842572 s : ConjugateGradient Converged on iteration 69	Computed residual 6.02416166e-17	True residual 5.07703767e-16	Target 1e-16
+Grid : Message : 55.842615 s : 	Solver Elapsed    0.925690 s
+Grid : Message : 55.858422 s : SchurRedBlackBase solver true unprec resid 4.41001235e-16
+Grid : Message : 55.858452 s : spin 3 color 1 norm2(src5d) 32848.5104 norm2(result5d) 3890.60666
+Grid : Message : 56.880921 s : ConjugateGradient Converged on iteration 69	Computed residual 6.04404872e-17	True residual 5.05521972e-16	Target 1e-16
+Grid : Message : 56.880957 s : 	Solver Elapsed    0.985755 s
+Grid : Message : 56.894474 s : SchurRedBlackBase solver true unprec resid 4.38147375e-16
+Grid : Message : 56.894507 s : spin 3 color 2 norm2(src5d) 32784.6306 norm2(result5d) 3900.95179
+Grid : Message : 56.903340 s : -------------------- twisted propagator -epsilon
+Grid : Message : 56.903621 s :  Twist [0] -0.00127323961 phase(1,0)
+Grid : Message : 57.884582 s : ConjugateGradient Converged on iteration 69	Computed residual 6.09045245e-17	True residual 5.09892524e-16	Target 1e-16
+Grid : Message : 57.884621 s : 	Solver Elapsed    0.949867 s
+Grid : Message : 57.898173 s : SchurRedBlackBase solver true unprec resid 4.4099046e-16
+Grid : Message : 57.898212 s : spin 0 color 0 norm2(src5d) 32629.0728 norm2(result5d) 3889.57939
+Grid : Message : 58.863083 s : ConjugateGradient Converged on iteration 69	Computed residual 6.13505101e-17	True residual 5.1064347e-16	Target 1e-16
+Grid : Message : 58.863121 s : 	Solver Elapsed    0.922949 s
+Grid : Message : 58.876607 s : SchurRedBlackBase solver true unprec resid 4.42006135e-16
+Grid : Message : 58.876630 s : spin 0 color 1 norm2(src5d) 32862.8545 norm2(result5d) 3892.80216
+Grid : Message : 59.845718 s : ConjugateGradient Converged on iteration 69	Computed residual 6.20670063e-17	True residual 5.1030462e-16	Target 1e-16
+Grid : Message : 59.845754 s : 	Solver Elapsed    0.932112 s
+Grid : Message : 59.859173 s : SchurRedBlackBase solver true unprec resid 4.41493475e-16
+Grid : Message : 59.859200 s : spin 0 color 2 norm2(src5d) 32932.6083 norm2(result5d) 3905.25114
+Grid : Message : 60.830596 s : ConjugateGradient Converged on iteration 69	Computed residual 6.32775408e-17	True residual 5.14589948e-16	Target 1e-16
+Grid : Message : 60.830631 s : 	Solver Elapsed    0.935718 s
+Grid : Message : 60.846343 s : SchurRedBlackBase solver true unprec resid 4.42863668e-16
+Grid : Message : 60.846366 s : spin 1 color 0 norm2(src5d) 32810.9355 norm2(result5d) 3892.01559
+Grid : Message : 61.810986 s : ConjugateGradient Converged on iteration 69	Computed residual 6.17965949e-17	True residual 5.07751482e-16	Target 1e-16
+Grid : Message : 61.811017 s : 	Solver Elapsed    0.930227 s
+Grid : Message : 61.824528 s : SchurRedBlackBase solver true unprec resid 4.39402727e-16
+Grid : Message : 61.824572 s : spin 1 color 1 norm2(src5d) 32606.0375 norm2(result5d) 3863.00741
+Grid : Message : 62.788114 s : ConjugateGradient Converged on iteration 69	Computed residual 6.27846276e-17	True residual 5.07439242e-16	Target 1e-16
+Grid : Message : 62.788145 s : 	Solver Elapsed    0.928178 s
+Grid : Message : 62.801570 s : SchurRedBlackBase solver true unprec resid 4.38474809e-16
+Grid : Message : 62.801593 s : spin 1 color 2 norm2(src5d) 32646.0549 norm2(result5d) 3878.83515
+Grid : Message : 63.766075 s : ConjugateGradient Converged on iteration 69	Computed residual 6.00907515e-17	True residual 5.08213963e-16	Target 1e-16
+Grid : Message : 63.766099 s : 	Solver Elapsed    0.926158 s
+Grid : Message : 63.781610 s : SchurRedBlackBase solver true unprec resid 4.39801472e-16
+Grid : Message : 63.781635 s : spin 2 color 0 norm2(src5d) 32777.0869 norm2(result5d) 3858.72854
+Grid : Message : 64.752232 s : ConjugateGradient Converged on iteration 69	Computed residual 6.14343861e-17	True residual 5.10264186e-16	Target 1e-16
+Grid : Message : 64.752264 s : 	Solver Elapsed    0.935913 s
+Grid : Message : 64.766471 s : SchurRedBlackBase solver true unprec resid 4.40331188e-16
+Grid : Message : 64.766503 s : spin 2 color 1 norm2(src5d) 32894.7068 norm2(result5d) 3913.43428
+Grid : Message : 65.734145 s : ConjugateGradient Converged on iteration 69	Computed residual 6.30839968e-17	True residual 5.10696862e-16	Target 1e-16
+Grid : Message : 65.734176 s : 	Solver Elapsed    0.932384 s
+Grid : Message : 65.747611 s : SchurRedBlackBase solver true unprec resid 4.41824424e-16
+Grid : Message : 65.747639 s : spin 2 color 2 norm2(src5d) 32883.3555 norm2(result5d) 3897.55218
+Grid : Message : 66.701239 s : ConjugateGradient Converged on iteration 69	Computed residual 6.28202565e-17	True residual 5.11467835e-16	Target 1e-16
+Grid : Message : 66.701265 s : 	Solver Elapsed    0.917493 s
+Grid : Message : 66.714696 s : SchurRedBlackBase solver true unprec resid 4.41410482e-16
+Grid : Message : 66.714722 s : spin 3 color 0 norm2(src5d) 32883.9308 norm2(result5d) 3910.07681
+Grid : Message : 67.680418 s : ConjugateGradient Converged on iteration 69	Computed residual 6.02716257e-17	True residual 5.07423253e-16	Target 1e-16
+Grid : Message : 67.680446 s : 	Solver Elapsed    0.929405 s
+Grid : Message : 67.694564 s : SchurRedBlackBase solver true unprec resid 4.39362331e-16
+Grid : Message : 67.694587 s : spin 3 color 1 norm2(src5d) 32848.5104 norm2(result5d) 3890.6687
+Grid : Message : 68.657136 s : ConjugateGradient Converged on iteration 69	Computed residual 6.04778188e-17	True residual 5.09388409e-16	Target 1e-16
+Grid : Message : 68.657163 s : 	Solver Elapsed    0.925766 s
+Grid : Message : 68.671214 s : SchurRedBlackBase solver true unprec resid 4.40662729e-16
+Grid : Message : 68.671238 s : spin 3 color 2 norm2(src5d) 32784.6306 norm2(result5d) 3901.00583
+Grid : Message : 68.753273 s : -------------------- results
+Grid : Message : 68.753299 s : 1st order numerical derivative -- norm2= 6584.00239 epsilon= 0.00100000005
+Grid : Message : 68.787806 s : 1st order sequential insertion -- norm2= 6584.00804
+Grid : Message : 68.822103 s : Diff -- norm_abs= 5.11113508e-05 norm_rel= 6.29900968e-07
+Grid : Message : 68.953663 s : 2nd order numerical derivative -- norm2= 4149.63121 epsilon= 0.00100000005
+Grid : Message : 68.992561 s : 2nd order sequential insertion -- norm2= 4149.63518
+Grid : Message : 69.294190 s : Diff -- norm_abs= 4.24033117e-05 norm_rel= 6.58256145e-07
+Grid : Message : 69.158958 s : ==================== Moebius DWF perturbative test
+Grid : Message : 69.172558 s : -------------------- untwisted propagator
+Grid : Message : 70.237936 s : ConjugateGradient Converged on iteration 73	Computed residual 9.14145382e-17	True residual 4.63598265e-16	Target 1e-16
+Grid : Message : 70.238242 s : 	Solver Elapsed    1.034025 s
+Grid : Message : 70.252762 s : SchurRedBlackBase solver true unprec resid 3.83741513e-16
+Grid : Message : 70.252806 s : spin 0 color 0 norm2(src5d) 35818.0409 norm2(result5d) 1153.46772
+Grid : Message : 71.332001 s : ConjugateGradient Converged on iteration 73	Computed residual 9.26843383e-17	True residual 4.69565273e-16	Target 1e-16
+Grid : Message : 71.332037 s : 	Solver Elapsed    1.039853 s
+Grid : Message : 71.352098 s : SchurRedBlackBase solver true unprec resid 3.86678339e-16
+Grid : Message : 71.354938 s : spin 0 color 1 norm2(src5d) 36386.3408 norm2(result5d) 1162.03003
+Grid : Message : 72.457552 s : ConjugateGradient Converged on iteration 73	Computed residual 9.39242807e-17	True residual 4.66980513e-16	Target 1e-16
+Grid : Message : 72.457587 s : 	Solver Elapsed    1.055595 s
+Grid : Message : 72.472998 s : SchurRedBlackBase solver true unprec resid 3.85537846e-16
+Grid : Message : 72.473023 s : spin 0 color 2 norm2(src5d) 36119.638 norm2(result5d) 1158.22552
+Grid : Message : 73.524827 s : ConjugateGradient Converged on iteration 73	Computed residual 9.49300289e-17	True residual 4.67801508e-16	Target 1e-16
+Grid : Message : 73.524861 s : 	Solver Elapsed    1.016277 s
+Grid : Message : 73.538871 s : SchurRedBlackBase solver true unprec resid 3.8571059e-16
+Grid : Message : 73.538905 s : spin 1 color 0 norm2(src5d) 36149.818 norm2(result5d) 1152.58563
+Grid : Message : 74.632962 s : ConjugateGradient Converged on iteration 73	Computed residual 9.08884854e-17	True residual 4.67395659e-16	Target 1e-16
+Grid : Message : 74.632990 s : 	Solver Elapsed    1.058642 s
+Grid : Message : 74.647680 s : SchurRedBlackBase solver true unprec resid 3.8571756e-16
+Grid : Message : 74.647711 s : spin 1 color 1 norm2(src5d) 36046.2033 norm2(result5d) 1152.30619
+Grid : Message : 75.689239 s : ConjugateGradient Converged on iteration 73	Computed residual 9.33717323e-17	True residual 4.66717839e-16	Target 1e-16
+Grid : Message : 75.689277 s : 	Solver Elapsed    1.005230 s
+Grid : Message : 75.706046 s : SchurRedBlackBase solver true unprec resid 3.85371944e-16
+Grid : Message : 75.706077 s : spin 1 color 2 norm2(src5d) 35922.9579 norm2(result5d) 1151.3103
+Grid : Message : 76.862762 s : ConjugateGradient Converged on iteration 73	Computed residual 9.21457494e-17	True residual 4.64941451e-16	Target 1e-16
+Grid : Message : 76.862800 s : 	Solver Elapsed    1.115742 s
+Grid : Message : 76.876213 s : SchurRedBlackBase solver true unprec resid 3.84907901e-16
+Grid : Message : 76.876238 s : spin 2 color 0 norm2(src5d) 36157.2449 norm2(result5d) 1154.27143
+Grid : Message : 77.930053 s : ConjugateGradient Converged on iteration 73	Computed residual 9.20987324e-17	True residual 4.64881014e-16	Target 1e-16
+Grid : Message : 77.930092 s : 	Solver Elapsed    1.016854 s
+Grid : Message : 77.943960 s : SchurRedBlackBase solver true unprec resid 3.84457179e-16
+Grid : Message : 77.943987 s : spin 2 color 1 norm2(src5d) 36174.051 norm2(result5d) 1160.43399
+Grid : Message : 78.995704 s : ConjugateGradient Converged on iteration 73	Computed residual 9.4860888e-17	True residual 4.64804604e-16	Target 1e-16
+Grid : Message : 78.995739 s : 	Solver Elapsed    1.011961 s
+Grid : Message : 79.979300 s : SchurRedBlackBase solver true unprec resid 3.86226214e-16
+Grid : Message : 79.981700 s : spin 2 color 2 norm2(src5d) 36203.2185 norm2(result5d) 1161.15088
+Grid : Message : 80.365910 s : ConjugateGradient Converged on iteration 73	Computed residual 9.26105894e-17	True residual 4.65072263e-16	Target 1e-16
+Grid : Message : 80.366290 s : 	Solver Elapsed    0.991005 s
+Grid : Message : 80.505790 s : SchurRedBlackBase solver true unprec resid 3.8310199e-16
+Grid : Message : 80.506220 s : spin 3 color 0 norm2(src5d) 36231.8494 norm2(result5d) 1161.41341
+Grid : Message : 81.729030 s : ConjugateGradient Converged on iteration 73	Computed residual 9.04821142e-17	True residual 4.62350664e-16	Target 1e-16
+Grid : Message : 81.729360 s : 	Solver Elapsed    0.987157 s
+Grid : Message : 81.868740 s : SchurRedBlackBase solver true unprec resid 3.83046091e-16
+Grid : Message : 81.868990 s : spin 3 color 1 norm2(src5d) 36190.2968 norm2(result5d) 1158.68734
+Grid : Message : 82.142556 s : ConjugateGradient Converged on iteration 73	Computed residual 8.85146011e-17	True residual 4.61812977e-16	Target 1e-16
+Grid : Message : 82.142588 s : 	Solver Elapsed    1.018840 s
+Grid : Message : 82.156159 s : SchurRedBlackBase solver true unprec resid 3.83568172e-16
+Grid : Message : 82.156192 s : spin 3 color 2 norm2(src5d) 35931.5975 norm2(result5d) 1154.40278
+Grid : Message : 82.165108 s : -------------------- sequential propagators
+Grid : Message : 83.733571 s : ConjugateGradient Converged on iteration 74	Computed residual 7.80342465e-17	True residual 5.40551046e-16	Target 1e-16
+Grid : Message : 83.733599 s : 	Solver Elapsed    1.083854 s
+Grid : Message : 83.747493 s : SchurRedBlackBase solver true unprec resid 4.93499047e-16
+Grid : Message : 83.747518 s : spin 0 color 0 norm2(src5d) 7781.55785 norm2(result5d) 442.635796
+Grid : Message : 84.811181 s : ConjugateGradient Converged on iteration 74	Computed residual 7.88654574e-17	True residual 5.42824346e-16	Target 1e-16
+Grid : Message : 84.811219 s : 	Solver Elapsed    1.031027 s
+Grid : Message : 84.825419 s : SchurRedBlackBase solver true unprec resid 4.95715078e-16
+Grid : Message : 84.825448 s : spin 0 color 1 norm2(src5d) 7788.01471 norm2(result5d) 442.88649
+Grid : Message : 85.862673 s : ConjugateGradient Converged on iteration 74	Computed residual 7.75276149e-17	True residual 5.4551642e-16	Target 1e-16
+Grid : Message : 85.862716 s : 	Solver Elapsed    1.004142 s
+Grid : Message : 85.877501 s : SchurRedBlackBase solver true unprec resid 4.95521895e-16
+Grid : Message : 85.877537 s : spin 0 color 2 norm2(src5d) 7812.88632 norm2(result5d) 443.408313
+Grid : Message : 86.964452 s : ConjugateGradient Converged on iteration 74	Computed residual 7.81344796e-17	True residual 5.4039241e-16	Target 1e-16
+Grid : Message : 86.964489 s : 	Solver Elapsed    1.051861 s
+Grid : Message : 86.978545 s : SchurRedBlackBase solver true unprec resid 4.9347218e-16
+Grid : Message : 86.978580 s : spin 1 color 0 norm2(src5d) 7786.39377 norm2(result5d) 440.550465
+Grid : Message : 88.364130 s : ConjugateGradient Converged on iteration 74	Computed residual 7.61128664e-17	True residual 5.43064379e-16	Target 1e-16
+Grid : Message : 88.364480 s : 	Solver Elapsed    1.024026 s
+Grid : Message : 88.503260 s : SchurRedBlackBase solver true unprec resid 4.95003535e-16
+Grid : Message : 88.503560 s : spin 1 color 1 norm2(src5d) 7728.41763 norm2(result5d) 438.313875
+Grid : Message : 89.102998 s : ConjugateGradient Converged on iteration 74	Computed residual 7.69485785e-17	True residual 5.44221561e-16	Target 1e-16
+Grid : Message : 89.103030 s : 	Solver Elapsed    1.020479 s
+Grid : Message : 89.118912 s : SchurRedBlackBase solver true unprec resid 4.95957704e-16
+Grid : Message : 89.118943 s : spin 1 color 2 norm2(src5d) 7760.06975 norm2(result5d) 440.171232
+Grid : Message : 90.169030 s : ConjugateGradient Converged on iteration 74	Computed residual 7.62034319e-17	True residual 5.39395426e-16	Target 1e-16
+Grid : Message : 90.169063 s : 	Solver Elapsed    1.015128 s
+Grid : Message : 90.184170 s : SchurRedBlackBase solver true unprec resid 4.91730212e-16
+Grid : Message : 90.184194 s : spin 2 color 0 norm2(src5d) 7719.78189 norm2(result5d) 436.9123
+Grid : Message : 91.241144 s : ConjugateGradient Converged on iteration 74	Computed residual 7.88615109e-17	True residual 5.3905534e-16	Target 1e-16
+Grid : Message : 91.241181 s : 	Solver Elapsed    1.024345 s
+Grid : Message : 91.254588 s : SchurRedBlackBase solver true unprec resid 4.90665509e-16
+Grid : Message : 91.254623 s : spin 2 color 1 norm2(src5d) 7829.45501 norm2(result5d) 443.870176
+Grid : Message : 92.291602 s : ConjugateGradient Converged on iteration 74	Computed residual 7.51765933e-17	True residual 5.40743221e-16	Target 1e-16
+Grid : Message : 92.291634 s : 	Solver Elapsed    1.000032 s
+Grid : Message : 92.311385 s : SchurRedBlackBase solver true unprec resid 4.93722718e-16
+Grid : Message : 92.311419 s : spin 2 color 2 norm2(src5d) 7797.53295 norm2(result5d) 443.14319
+Grid : Message : 93.436102 s : ConjugateGradient Converged on iteration 74	Computed residual 7.82493012e-17	True residual 5.40007978e-16	Target 1e-16
+Grid : Message : 93.436126 s : 	Solver Elapsed    1.083990 s
+Grid : Message : 93.450203 s : SchurRedBlackBase solver true unprec resid 4.93415718e-16
+Grid : Message : 93.450225 s : spin 3 color 0 norm2(src5d) 7822.58519 norm2(result5d) 444.756295
+Grid : Message : 94.497113 s : ConjugateGradient Converged on iteration 74	Computed residual 7.80220986e-17	True residual 5.39973361e-16	Target 1e-16
+Grid : Message : 94.497142 s : 	Solver Elapsed    1.012532 s
+Grid : Message : 94.512724 s : SchurRedBlackBase solver true unprec resid 4.94647541e-16
+Grid : Message : 94.512754 s : spin 3 color 1 norm2(src5d) 7783.72043 norm2(result5d) 440.420241
+Grid : Message : 95.574096 s : ConjugateGradient Converged on iteration 74	Computed residual 7.82966415e-17	True residual 5.45617891e-16	Target 1e-16
+Grid : Message : 95.574130 s : 	Solver Elapsed    1.028026 s
+Grid : Message : 95.587567 s : SchurRedBlackBase solver true unprec resid 4.95671119e-16
+Grid : Message : 95.587597 s : spin 3 color 2 norm2(src5d) 7804.46125 norm2(result5d) 442.633784
+Grid : Message : 95.596630 s : -------------------- double sequential propagator
+Grid : Message : 97.636376 s : ConjugateGradient Converged on iteration 74	Computed residual 8.68136288e-17	True residual 5.83689792e-16	Target 1e-16
+Grid : Message : 97.636413 s : 	Solver Elapsed    1.016930 s
+Grid : Message : 97.650115 s : SchurRedBlackBase solver true unprec resid 5.45155338e-16
+Grid : Message : 97.650147 s : spin 0 color 0 norm2(src5d) 3814.64897 norm2(result5d) 263.583254
+Grid : Message : 98.708473 s : ConjugateGradient Converged on iteration 74	Computed residual 9.14155245e-17	True residual 5.84748837e-16	Target 1e-16
+Grid : Message : 98.708506 s : 	Solver Elapsed    1.024409 s
+Grid : Message : 98.721913 s : SchurRedBlackBase solver true unprec resid 5.46052302e-16
+Grid : Message : 98.721946 s : spin 0 color 1 norm2(src5d) 3819.51294 norm2(result5d) 264.234011
+Grid : Message : 99.763860 s : ConjugateGradient Converged on iteration 74	Computed residual 8.71968509e-17	True residual 5.83744925e-16	Target 1e-16
+Grid : Message : 99.763894 s : 	Solver Elapsed    1.009035 s
+Grid : Message : 99.779818 s : SchurRedBlackBase solver true unprec resid 5.45315951e-16
+Grid : Message : 99.779845 s : spin 0 color 2 norm2(src5d) 3824.93147 norm2(result5d) 264.512306
+Grid : Message : 100.812885 s : ConjugateGradient Converged on iteration 74	Computed residual 8.61961308e-17	True residual 5.84914879e-16	Target 1e-16
+Grid : Message : 100.812911 s : 	Solver Elapsed    1.000934 s
+Grid : Message : 100.826328 s : SchurRedBlackBase solver true unprec resid 5.46211565e-16
+Grid : Message : 100.826354 s : spin 1 color 0 norm2(src5d) 3791.98475 norm2(result5d) 261.978344
+Grid : Message : 101.872213 s : ConjugateGradient Converged on iteration 74	Computed residual 8.11820149e-17	True residual 5.81279483e-16	Target 1e-16
+Grid : Message : 101.872244 s : 	Solver Elapsed    1.013640 s
+Grid : Message : 101.885939 s : SchurRedBlackBase solver true unprec resid 5.44380158e-16
+Grid : Message : 101.885969 s : spin 1 color 1 norm2(src5d) 3778.72036 norm2(result5d) 260.418849
+Grid : Message : 102.953381 s : ConjugateGradient Converged on iteration 74	Computed residual 9.14682882e-17	True residual 5.83504778e-16	Target 1e-16
+Grid : Message : 102.953415 s : 	Solver Elapsed    1.034587 s
+Grid : Message : 102.966957 s : SchurRedBlackBase solver true unprec resid 5.46670085e-16
+Grid : Message : 102.966984 s : spin 1 color 2 norm2(src5d) 3793.31835 norm2(result5d) 261.696014
+Grid : Message : 104.318880 s : ConjugateGradient Converged on iteration 74	Computed residual 8.695783e-17	True residual 5.78837464e-16	Target 1e-16
+Grid : Message : 104.319210 s : 	Solver Elapsed    1.030675 s
+Grid : Message : 104.454060 s : SchurRedBlackBase solver true unprec resid 5.43261718e-16
+Grid : Message : 104.454340 s : spin 2 color 0 norm2(src5d) 3763.46407 norm2(result5d) 258.722308
+Grid : Message : 105.156236 s : ConjugateGradient Converged on iteration 74	Computed residual 8.25157237e-17	True residual 5.83493624e-16	Target 1e-16
+Grid : Message : 105.156266 s : 	Solver Elapsed    1.079063 s
+Grid : Message : 105.170083 s : SchurRedBlackBase solver true unprec resid 5.46190984e-16
+Grid : Message : 105.170108 s : spin 2 color 1 norm2(src5d) 3830.37033 norm2(result5d) 264.599848
+Grid : Message : 106.258521 s : ConjugateGradient Converged on iteration 74	Computed residual 8.63778016e-17	True residual 5.78442206e-16	Target 1e-16
+Grid : Message : 106.258553 s : 	Solver Elapsed    1.056361 s
+Grid : Message : 106.273969 s : SchurRedBlackBase solver true unprec resid 5.4139855e-16
+Grid : Message : 106.273999 s : spin 2 color 2 norm2(src5d) 3818.73321 norm2(result5d) 264.15882
+Grid : Message : 107.304414 s : ConjugateGradient Converged on iteration 74	Computed residual 8.30890132e-17	True residual 5.81301365e-16	Target 1e-16
+Grid : Message : 107.304441 s : 	Solver Elapsed    0.997597 s
+Grid : Message : 107.319968 s : SchurRedBlackBase solver true unprec resid 5.44670101e-16
+Grid : Message : 107.319997 s : spin 3 color 0 norm2(src5d) 3834.68988 norm2(result5d) 265.264211
+Grid : Message : 108.345435 s : ConjugateGradient Converged on iteration 74	Computed residual 8.07873465e-17	True residual 5.85172138e-16	Target 1e-16
+Grid : Message : 108.345467 s : 	Solver Elapsed    0.993006 s
+Grid : Message : 108.359516 s : SchurRedBlackBase solver true unprec resid 5.44532152e-16
+Grid : Message : 108.359543 s : spin 3 color 1 norm2(src5d) 3797.93762 norm2(result5d) 261.131694
+Grid : Message : 109.393114 s : ConjugateGradient Converged on iteration 74	Computed residual 8.31476802e-17	True residual 5.77348158e-16	Target 1e-16
+Grid : Message : 109.393142 s : 	Solver Elapsed    1.002099 s
+Grid : Message : 109.406702 s : SchurRedBlackBase solver true unprec resid 5.4061088e-16
+Grid : Message : 109.406727 s : spin 3 color 2 norm2(src5d) 3815.29551 norm2(result5d) 262.733545
+Grid : Message : 109.415599 s : -------------------- twisted propagator +epsilon
+Grid : Message : 109.415875 s :  Twist [0] 0.00127323961 phase(1,0)
+Grid : Message : 110.457412 s : ConjugateGradient Converged on iteration 73	Computed residual 9.13867383e-17	True residual 4.64273574e-16	Target 1e-16
+Grid : Message : 110.457441 s : 	Solver Elapsed    1.007504 s
+Grid : Message : 110.472115 s : SchurRedBlackBase solver true unprec resid 3.85356103e-16
+Grid : Message : 110.472144 s : spin 0 color 0 norm2(src5d) 35818.188 norm2(result5d) 1153.4636
+Grid : Message : 111.507121 s : ConjugateGradient Converged on iteration 73	Computed residual 9.26590072e-17	True residual 4.66072602e-16	Target 1e-16
+Grid : Message : 111.507147 s : 	Solver Elapsed    0.996885 s
+Grid : Message : 111.520690 s : SchurRedBlackBase solver true unprec resid 3.84911866e-16
+Grid : Message : 111.520718 s : spin 0 color 1 norm2(src5d) 36386.5042 norm2(result5d) 1162.02987
+Grid : Message : 112.750003 s : ConjugateGradient Converged on iteration 73	Computed residual 9.39086741e-17	True residual 4.63611387e-16	Target 1e-16
+Grid : Message : 112.750042 s : 	Solver Elapsed    1.187476 s
+Grid : Message : 112.765344 s : SchurRedBlackBase solver true unprec resid 3.8516027e-16
+Grid : Message : 112.765374 s : spin 0 color 2 norm2(src5d) 36119.6966 norm2(result5d) 1158.22097
+Grid : Message : 113.857224 s : ConjugateGradient Converged on iteration 73	Computed residual 9.49080392e-17	True residual 4.60836983e-16	Target 1e-16
+Grid : Message : 113.857258 s : 	Solver Elapsed    1.053258 s
+Grid : Message : 113.870960 s : SchurRedBlackBase solver true unprec resid 3.81538552e-16
+Grid : Message : 113.870995 s : spin 1 color 0 norm2(src5d) 36149.8624 norm2(result5d) 1152.58202
+Grid : Message : 114.890574 s : ConjugateGradient Converged on iteration 73	Computed residual 9.08694946e-17	True residual 4.64261032e-16	Target 1e-16
+Grid : Message : 114.890606 s : 	Solver Elapsed    0.983984 s
+Grid : Message : 114.904109 s : SchurRedBlackBase solver true unprec resid 3.82877361e-16
+Grid : Message : 114.904135 s : spin 1 color 1 norm2(src5d) 36046.1623 norm2(result5d) 1152.29983
+Grid : Message : 115.959132 s : ConjugateGradient Converged on iteration 73	Computed residual 9.33536377e-17	True residual 4.6393152e-16	Target 1e-16
+Grid : Message : 115.959171 s : 	Solver Elapsed    1.020079 s
+Grid : Message : 115.974187 s : SchurRedBlackBase solver true unprec resid 3.8574063e-16
+Grid : Message : 115.974227 s : spin 1 color 2 norm2(src5d) 35922.9833 norm2(result5d) 1151.30717
+Grid : Message : 117.732180 s : ConjugateGradient Converged on iteration 73	Computed residual 9.2128801e-17	True residual 4.62313045e-16	Target 1e-16
+Grid : Message : 117.732530 s : 	Solver Elapsed    1.063291 s
+Grid : Message : 117.894400 s : SchurRedBlackBase solver true unprec resid 3.83691906e-16
+Grid : Message : 117.894680 s : spin 2 color 0 norm2(src5d) 36157.3798 norm2(result5d) 1154.27021
+Grid : Message : 118.198896 s : ConjugateGradient Converged on iteration 73	Computed residual 9.2068887e-17	True residual 4.63816551e-16	Target 1e-16
+Grid : Message : 118.198936 s : 	Solver Elapsed    1.066889 s
+Grid : Message : 118.212921 s : SchurRedBlackBase solver true unprec resid 3.82507938e-16
+Grid : Message : 118.212949 s : spin 2 color 1 norm2(src5d) 36174.1237 norm2(result5d) 1160.43287
+Grid : Message : 119.342287 s : ConjugateGradient Converged on iteration 73	Computed residual 9.48489757e-17	True residual 4.65381316e-16	Target 1e-16
+Grid : Message : 119.342322 s : 	Solver Elapsed    1.092780 s
+Grid : Message : 119.355799 s : SchurRedBlackBase solver true unprec resid 3.85683848e-16
+Grid : Message : 119.355828 s : spin 2 color 2 norm2(src5d) 36203.2284 norm2(result5d) 1161.14699
+Grid : Message : 120.391981 s : ConjugateGradient Converged on iteration 73	Computed residual 9.25806424e-17	True residual 4.65005119e-16	Target 1e-16
+Grid : Message : 120.392014 s : 	Solver Elapsed    0.999301 s
+Grid : Message : 120.405644 s : SchurRedBlackBase solver true unprec resid 3.8368036e-16
+Grid : Message : 120.405671 s : spin 3 color 0 norm2(src5d) 36231.9708 norm2(result5d) 1161.41143
+Grid : Message : 121.464673 s : ConjugateGradient Converged on iteration 73	Computed residual 9.04572741e-17	True residual 4.64389883e-16	Target 1e-16
+Grid : Message : 121.464701 s : 	Solver Elapsed    1.023109 s
+Grid : Message : 121.480416 s : SchurRedBlackBase solver true unprec resid 3.83769756e-16
+Grid : Message : 121.480440 s : spin 3 color 1 norm2(src5d) 36190.4545 norm2(result5d) 1158.68423
+Grid : Message : 122.846245 s : ConjugateGradient Converged on iteration 73	Computed residual 8.848406e-17	True residual 4.64861862e-16	Target 1e-16
+Grid : Message : 122.846273 s : 	Solver Elapsed    1.330672 s
+Grid : Message : 122.860315 s : SchurRedBlackBase solver true unprec resid 3.83396619e-16
+Grid : Message : 122.860349 s : spin 3 color 2 norm2(src5d) 35931.7093 norm2(result5d) 1154.40017
+Grid : Message : 122.869472 s : -------------------- twisted propagator -epsilon
+Grid : Message : 122.869736 s :  Twist [0] -0.00127323961 phase(1,0)
+Grid : Message : 123.951423 s : ConjugateGradient Converged on iteration 73	Computed residual 9.14420379e-17	True residual 4.62410286e-16	Target 1e-16
+Grid : Message : 123.951459 s : 	Solver Elapsed    1.050271 s
+Grid : Message : 123.965598 s : SchurRedBlackBase solver true unprec resid 3.840289e-16
+Grid : Message : 123.965639 s : spin 0 color 0 norm2(src5d) 35817.8947 norm2(result5d) 1153.47181
+Grid : Message : 125.505530 s : ConjugateGradient Converged on iteration 73	Computed residual 9.27093395e-17	True residual 4.61557785e-16	Target 1e-16
+Grid : Message : 125.505930 s : 	Solver Elapsed    1.045047 s
+Grid : Message : 125.659330 s : SchurRedBlackBase solver true unprec resid 3.81587386e-16
+Grid : Message : 125.659700 s : spin 0 color 1 norm2(src5d) 36386.1783 norm2(result5d) 1162.03014
+Grid : Message : 126.172018 s : ConjugateGradient Converged on iteration 73	Computed residual 9.39395906e-17	True residual 4.63897845e-16	Target 1e-16
+Grid : Message : 126.172045 s : 	Solver Elapsed    1.068744 s
+Grid : Message : 126.185741 s : SchurRedBlackBase solver true unprec resid 3.85057614e-16
+Grid : Message : 126.185768 s : spin 0 color 2 norm2(src5d) 36119.5803 norm2(result5d) 1158.23003
+Grid : Message : 127.268633 s : ConjugateGradient Converged on iteration 73	Computed residual 9.49516649e-17	True residual 4.65554357e-16	Target 1e-16
+Grid : Message : 127.268664 s : 	Solver Elapsed    1.044927 s
+Grid : Message : 127.283739 s : SchurRedBlackBase solver true unprec resid 3.83951469e-16
+Grid : Message : 127.283765 s : spin 1 color 0 norm2(src5d) 36149.7744 norm2(result5d) 1152.58921
+Grid : Message : 128.386394 s : ConjugateGradient Converged on iteration 73	Computed residual 9.09072175e-17	True residual 4.63146832e-16	Target 1e-16
+Grid : Message : 128.386430 s : 	Solver Elapsed    1.063827 s
+Grid : Message : 128.400200 s : SchurRedBlackBase solver true unprec resid 3.82380064e-16
+Grid : Message : 128.400229 s : spin 1 color 1 norm2(src5d) 36046.245 norm2(result5d) 1152.31251
+Grid : Message : 129.441273 s : ConjugateGradient Converged on iteration 73	Computed residual 9.33895115e-17	True residual 4.64938431e-16	Target 1e-16
+Grid : Message : 129.441308 s : 	Solver Elapsed    1.004100 s
+Grid : Message : 129.454992 s : SchurRedBlackBase solver true unprec resid 3.84505363e-16
+Grid : Message : 129.455017 s : spin 1 color 2 norm2(src5d) 35922.9334 norm2(result5d) 1151.3134
+Grid : Message : 130.520410 s : ConjugateGradient Converged on iteration 73	Computed residual 9.21623467e-17	True residual 4.64053485e-16	Target 1e-16
+Grid : Message : 130.520441 s : 	Solver Elapsed    1.028231 s
+Grid : Message : 130.533980 s : SchurRedBlackBase solver true unprec resid 3.84280729e-16
+Grid : Message : 130.534016 s : spin 2 color 0 norm2(src5d) 36157.1109 norm2(result5d) 1154.27263
+Grid : Message : 131.657355 s : ConjugateGradient Converged on iteration 73	Computed residual 9.2128363e-17	True residual 4.6467781e-16	Target 1e-16
+Grid : Message : 131.657373 s : 	Solver Elapsed    1.082358 s
+Grid : Message : 131.676853 s : SchurRedBlackBase solver true unprec resid 3.84452313e-16
+Grid : Message : 131.676877 s : spin 2 color 1 norm2(src5d) 36173.9792 norm2(result5d) 1160.43506
+Grid : Message : 133.865990 s : ConjugateGradient Converged on iteration 73	Computed residual 9.48724163e-17	True residual 4.66544795e-16	Target 1e-16
+Grid : Message : 133.866280 s : 	Solver Elapsed    1.361291 s
+Grid : Message : 133.105951 s : SchurRedBlackBase solver true unprec resid 3.8566956e-16
+Grid : Message : 133.105965 s : spin 2 color 2 norm2(src5d) 36203.2094 norm2(result5d) 1161.15473
+Grid : Message : 134.546754 s : ConjugateGradient Converged on iteration 73	Computed residual 9.26402783e-17	True residual 4.66455242e-16	Target 1e-16
+Grid : Message : 134.546766 s : 	Solver Elapsed    1.390693 s
+Grid : Message : 134.565887 s : SchurRedBlackBase solver true unprec resid 3.84183472e-16
+Grid : Message : 134.565899 s : spin 3 color 0 norm2(src5d) 36231.7288 norm2(result5d) 1161.41537
+Grid : Message : 135.742140 s : ConjugateGradient Converged on iteration 73	Computed residual 9.05066215e-17	True residual 4.63940312e-16	Target 1e-16
+Grid : Message : 135.742171 s : 	Solver Elapsed    1.131439 s
+Grid : Message : 135.756467 s : SchurRedBlackBase solver true unprec resid 3.8497857e-16
+Grid : Message : 135.756500 s : spin 3 color 1 norm2(src5d) 36190.14 norm2(result5d) 1158.69042
+Grid : Message : 136.929632 s : ConjugateGradient Converged on iteration 73	Computed residual 8.85448822e-17	True residual 4.64881257e-16	Target 1e-16
+Grid : Message : 136.929656 s : 	Solver Elapsed    1.132169 s
+Grid : Message : 136.944754 s : SchurRedBlackBase solver true unprec resid 3.85659933e-16
+Grid : Message : 136.944788 s : spin 3 color 2 norm2(src5d) 35931.4867 norm2(result5d) 1154.40537
+Grid : Message : 137.291250 s : -------------------- results
+Grid : Message : 137.291540 s : 1st order numerical derivative -- norm2= 5299.69786 epsilon= 0.00100000005
+Grid : Message : 137.651180 s : 1st order sequential insertion -- norm2= 5299.70216
+Grid : Message : 137.100586 s : Diff -- norm_abs= 4.32034369e-05 norm_rel= 5.93461642e-07
+Grid : Message : 137.228374 s : 2nd order numerical derivative -- norm2= 3153.03037 epsilon= 0.00100000005
+Grid : Message : 137.267084 s : 2nd order sequential insertion -- norm2= 3153.0332
+Grid : Message : 137.301683 s : Diff -- norm_abs= 3.50318104e-05 norm_rel= 6.23876185e-07
+Grid : Message : 137.425954 s : ==================== z-Moebius DWF perturbative test
+Grid : Message : 137.440728 s : -------------------- untwisted propagator
+Grid : Message : 138.579474 s : ConjugateGradient Converged on iteration 81	Computed residual 6.42767463e-17	True residual 5.13807592e-16	Target 1e-16
+Grid : Message : 138.579502 s : 	Solver Elapsed    1.111471 s
+Grid : Message : 138.593171 s : SchurRedBlackBase solver true unprec resid 4.64855988e-16
+Grid : Message : 138.593199 s : spin 0 color 0 norm2(src5d) 4720262.96 norm2(result5d) 25898.5844
+Grid : Message : 139.731138 s : ConjugateGradient Converged on iteration 81	Computed residual 6.50304927e-17	True residual 5.03680904e-16	Target 1e-16
+Grid : Message : 139.731175 s : 	Solver Elapsed    1.103023 s
+Grid : Message : 139.744755 s : SchurRedBlackBase solver true unprec resid 4.60416599e-16
+Grid : Message : 139.744783 s : spin 0 color 1 norm2(src5d) 4794287.06 norm2(result5d) 26086.4715
+Grid : Message : 140.893039 s : ConjugateGradient Converged on iteration 81	Computed residual 6.62577178e-17	True residual 5.06157504e-16	Target 1e-16
+Grid : Message : 140.893073 s : 	Solver Elapsed    1.110532 s
+Grid : Message : 140.907372 s : SchurRedBlackBase solver true unprec resid 4.6361194e-16
+Grid : Message : 140.907403 s : spin 0 color 2 norm2(src5d) 4765630.56 norm2(result5d) 26153.2386
+Grid : Message : 142.668060 s : ConjugateGradient Converged on iteration 81	Computed residual 6.50226449e-17	True residual 5.03990361e-16	Target 1e-16
+Grid : Message : 142.668290 s : 	Solver Elapsed    1.120461 s
+Grid : Message : 142.809890 s : SchurRedBlackBase solver true unprec resid 4.60616292e-16
+Grid : Message : 142.810200 s : spin 1 color 0 norm2(src5d) 4772087.54 norm2(result5d) 26072.9249
+Grid : Message : 143.214973 s : ConjugateGradient Converged on iteration 80	Computed residual 9.82563955e-17	True residual 5.18515395e-16	Target 1e-16
+Grid : Message : 143.215033 s : 	Solver Elapsed    1.096083 s
+Grid : Message : 143.230451 s : SchurRedBlackBase solver true unprec resid 4.70433011e-16
+Grid : Message : 143.230479 s : spin 1 color 1 norm2(src5d) 4765396.91 norm2(result5d) 25950.3303
+Grid : Message : 144.347515 s : ConjugateGradient Converged on iteration 80	Computed residual 9.84382123e-17	True residual 5.0847088e-16	Target 1e-16
+Grid : Message : 144.347551 s : 	Solver Elapsed    1.081751 s
+Grid : Message : 144.361536 s : SchurRedBlackBase solver true unprec resid 4.66259742e-16
+Grid : Message : 144.361567 s : spin 1 color 2 norm2(src5d) 4740100.23 norm2(result5d) 25922.7087
+Grid : Message : 145.494219 s : ConjugateGradient Converged on iteration 80	Computed residual 9.91049653e-17	True residual 5.13267455e-16	Target 1e-16
+Grid : Message : 145.494252 s : 	Solver Elapsed    1.094773 s
+Grid : Message : 145.508220 s : SchurRedBlackBase solver true unprec resid 4.69822601e-16
+Grid : Message : 145.508251 s : spin 2 color 0 norm2(src5d) 4748876.31 norm2(result5d) 25978.2934
+Grid : Message : 146.636531 s : ConjugateGradient Converged on iteration 80	Computed residual 9.8361188e-17	True residual 5.19921965e-16	Target 1e-16
+Grid : Message : 146.636553 s : 	Solver Elapsed    1.089102 s
+Grid : Message : 146.652354 s : SchurRedBlackBase solver true unprec resid 4.70540621e-16
+Grid : Message : 146.652380 s : spin 2 color 1 norm2(src5d) 4792035.42 norm2(result5d) 26122.2107
+Grid : Message : 147.818325 s : ConjugateGradient Converged on iteration 81	Computed residual 6.42549457e-17	True residual 5.10061287e-16	Target 1e-16
+Grid : Message : 147.818358 s : 	Solver Elapsed    1.127407 s
+Grid : Message : 147.832545 s : SchurRedBlackBase solver true unprec resid 4.61518118e-16
+Grid : Message : 147.832569 s : spin 2 color 2 norm2(src5d) 4772906.39 norm2(result5d) 26112.8611
+Grid : Message : 148.948168 s : ConjugateGradient Converged on iteration 80	Computed residual 9.9412053e-17	True residual 5.16188801e-16	Target 1e-16
+Grid : Message : 148.948195 s : 	Solver Elapsed    1.079792 s
+Grid : Message : 148.961654 s : SchurRedBlackBase solver true unprec resid 4.71267066e-16
+Grid : Message : 148.961676 s : spin 3 color 0 norm2(src5d) 4733201.88 norm2(result5d) 25977.3425
+Grid : Message : 150.111811 s : ConjugateGradient Converged on iteration 80	Computed residual 9.77036805e-17	True residual 5.1230732e-16	Target 1e-16
+Grid : Message : 150.111833 s : 	Solver Elapsed    1.110640 s
+Grid : Message : 150.132174 s : SchurRedBlackBase solver true unprec resid 4.70798371e-16
+Grid : Message : 150.132201 s : spin 3 color 1 norm2(src5d) 4767422.12 norm2(result5d) 26091.0785
+Grid : Message : 151.278519 s : ConjugateGradient Converged on iteration 80	Computed residual 9.8033378e-17	True residual 5.13857969e-16	Target 1e-16
+Grid : Message : 151.278547 s : 	Solver Elapsed    1.097618 s
+Grid : Message : 151.295617 s : SchurRedBlackBase solver true unprec resid 4.70334228e-16
+Grid : Message : 151.295643 s : spin 3 color 2 norm2(src5d) 4698623.25 norm2(result5d) 25905.3616
+Grid : Message : 151.308467 s : -------------------- sequential propagators
+Grid : Message : 153.861830 s : ConjugateGradient Converged on iteration 82	Computed residual 6.55584843e-17	True residual 6.47885262e-16	Target 1e-16
+Grid : Message : 153.862130 s : 	Solver Elapsed    1.221835 s
+Grid : Message : 153.996920 s : SchurRedBlackBase solver true unprec resid 6.85816977e-16
+Grid : Message : 153.997170 s : spin 0 color 0 norm2(src5d) 26404.3578 norm2(result5d) 726.157623
+Grid : Message : 154.257334 s : ConjugateGradient Converged on iteration 82	Computed residual 6.51554559e-17	True residual 6.4412534e-16	Target 1e-16
+Grid : Message : 154.257371 s : 	Solver Elapsed    1.124773 s
+Grid : Message : 154.270884 s : SchurRedBlackBase solver true unprec resid 6.8207458e-16
+Grid : Message : 154.270918 s : spin 0 color 1 norm2(src5d) 26175.4913 norm2(result5d) 725.97575
+Grid : Message : 155.434825 s : ConjugateGradient Converged on iteration 81	Computed residual 9.66043342e-17	True residual 6.44458156e-16	Target 1e-16
+Grid : Message : 155.434853 s : 	Solver Elapsed    1.132453 s
+Grid : Message : 155.448270 s : SchurRedBlackBase solver true unprec resid 6.85888341e-16
+Grid : Message : 155.448309 s : spin 0 color 2 norm2(src5d) 26428.6471 norm2(result5d) 727.378397
+Grid : Message : 156.580593 s : ConjugateGradient Converged on iteration 82	Computed residual 6.46673026e-17	True residual 6.42625921e-16	Target 1e-16
+Grid : Message : 156.580628 s : 	Solver Elapsed    1.099822 s
+Grid : Message : 156.594101 s : SchurRedBlackBase solver true unprec resid 6.80945601e-16
+Grid : Message : 156.594130 s : spin 1 color 0 norm2(src5d) 26469.8468 norm2(result5d) 723.39977
+Grid : Message : 157.731509 s : ConjugateGradient Converged on iteration 81	Computed residual 9.88801697e-17	True residual 6.46616401e-16	Target 1e-16
+Grid : Message : 157.731544 s : 	Solver Elapsed    1.104099 s
+Grid : Message : 157.746554 s : SchurRedBlackBase solver true unprec resid 6.87144173e-16
+Grid : Message : 157.746581 s : spin 1 color 1 norm2(src5d) 26305.6693 norm2(result5d) 719.237978
+Grid : Message : 158.910561 s : ConjugateGradient Converged on iteration 81	Computed residual 9.84826461e-17	True residual 6.46848977e-16	Target 1e-16
+Grid : Message : 158.910591 s : 	Solver Elapsed    1.130423 s
+Grid : Message : 158.924295 s : SchurRedBlackBase solver true unprec resid 6.85267905e-16
+Grid : Message : 158.924322 s : spin 1 color 2 norm2(src5d) 26188.723 norm2(result5d) 719.978686
+Grid : Message : 160.735860 s : ConjugateGradient Converged on iteration 81	Computed residual 9.83968871e-17	True residual 6.46250669e-16	Target 1e-16
+Grid : Message : 160.736280 s : 	Solver Elapsed    1.115223 s
+Grid : Message : 160.875090 s : SchurRedBlackBase solver true unprec resid 6.85119692e-16
+Grid : Message : 160.875320 s : spin 2 color 0 norm2(src5d) 25935.1078 norm2(result5d) 715.971979
+Grid : Message : 161.284178 s : ConjugateGradient Converged on iteration 82	Computed residual 6.61958943e-17	True residual 6.46231451e-16	Target 1e-16
+Grid : Message : 161.284200 s : 	Solver Elapsed    1.163775 s
+Grid : Message : 161.297712 s : SchurRedBlackBase solver true unprec resid 6.84191521e-16
+Grid : Message : 161.297732 s : spin 2 color 1 norm2(src5d) 26378.3053 norm2(result5d) 726.662628
+Grid : Message : 162.425302 s : ConjugateGradient Converged on iteration 82	Computed residual 6.48063565e-17	True residual 6.46060402e-16	Target 1e-16
+Grid : Message : 162.425329 s : 	Solver Elapsed    1.093843 s
+Grid : Message : 162.438655 s : SchurRedBlackBase solver true unprec resid 6.82910841e-16
+Grid : Message : 162.438679 s : spin 2 color 2 norm2(src5d) 26394.5937 norm2(result5d) 726.863925
+Grid : Message : 163.591653 s : ConjugateGradient Converged on iteration 82	Computed residual 6.45167191e-17	True residual 6.49598711e-16	Target 1e-16
+Grid : Message : 163.591687 s : 	Solver Elapsed    1.121109 s
+Grid : Message : 163.605710 s : SchurRedBlackBase solver true unprec resid 6.87258719e-16
+Grid : Message : 163.605734 s : spin 3 color 0 norm2(src5d) 26383.7953 norm2(result5d) 729.028989
+Grid : Message : 164.765469 s : ConjugateGradient Converged on iteration 81	Computed residual 9.46820261e-17	True residual 6.42881986e-16	Target 1e-16
+Grid : Message : 164.765495 s : 	Solver Elapsed    1.126789 s
+Grid : Message : 164.779428 s : SchurRedBlackBase solver true unprec resid 6.81604882e-16
+Grid : Message : 164.779453 s : spin 3 color 1 norm2(src5d) 26182.5669 norm2(result5d) 721.685613
+Grid : Message : 166.106000 s : ConjugateGradient Converged on iteration 82	Computed residual 6.44619403e-17	True residual 6.44536155e-16	Target 1e-16
+Grid : Message : 166.138000 s : 	Solver Elapsed    1.186892 s
+Grid : Message : 166.151690 s : SchurRedBlackBase solver true unprec resid 6.80523478e-16
+Grid : Message : 166.152060 s : spin 3 color 2 norm2(src5d) 26410.4821 norm2(result5d) 725.564278
+Grid : Message : 166.247190 s : -------------------- double sequential propagator
+Grid : Message : 168.188492 s : ConjugateGradient Converged on iteration 82	Computed residual 8.61863036e-17	True residual 6.97879516e-16	Target 1e-16
+Grid : Message : 168.188531 s : 	Solver Elapsed    1.127088 s
+Grid : Message : 168.203793 s : SchurRedBlackBase solver true unprec resid 7.4665727e-16
+Grid : Message : 168.203823 s : spin 0 color 0 norm2(src5d) 13263.3721 norm2(result5d) 418.728214
+Grid : Message : 169.698148 s : ConjugateGradient Converged on iteration 82	Computed residual 8.15586876e-17	True residual 6.94302149e-16	Target 1e-16
+Grid : Message : 169.698180 s : 	Solver Elapsed    1.462364 s
+Grid : Message : 169.712086 s : SchurRedBlackBase solver true unprec resid 7.44162318e-16
+Grid : Message : 169.712114 s : spin 0 color 1 norm2(src5d) 13160.9421 norm2(result5d) 418.995206
+Grid : Message : 170.868615 s : ConjugateGradient Converged on iteration 82	Computed residual 8.27703596e-17	True residual 6.91405344e-16	Target 1e-16
+Grid : Message : 170.868647 s : 	Solver Elapsed    1.122231 s
+Grid : Message : 170.882838 s : SchurRedBlackBase solver true unprec resid 7.44032712e-16
+Grid : Message : 170.882868 s : spin 0 color 2 norm2(src5d) 13253.1315 norm2(result5d) 420.18187
+Grid : Message : 172.295250 s : ConjugateGradient Converged on iteration 82	Computed residual 8.60965749e-17	True residual 6.98381558e-16	Target 1e-16
+Grid : Message : 172.295540 s : 	Solver Elapsed    1.113860 s
+Grid : Message : 172.431330 s : SchurRedBlackBase solver true unprec resid 7.46204732e-16
+Grid : Message : 172.431570 s : spin 1 color 0 norm2(src5d) 13215.5378 norm2(result5d) 416.23229
+Grid : Message : 173.184787 s : ConjugateGradient Converged on iteration 82	Computed residual 8.27432796e-17	True residual 6.92370795e-16	Target 1e-16
+Grid : Message : 173.184819 s : 	Solver Elapsed    1.108785 s
+Grid : Message : 173.198213 s : SchurRedBlackBase solver true unprec resid 7.4215765e-16
+Grid : Message : 173.198245 s : spin 1 color 1 norm2(src5d) 13210.2606 norm2(result5d) 413.843488
+Grid : Message : 174.376404 s : ConjugateGradient Converged on iteration 82	Computed residual 8.52225176e-17	True residual 6.928481e-16	Target 1e-16
+Grid : Message : 174.376435 s : 	Solver Elapsed    1.146443 s
+Grid : Message : 174.390143 s : SchurRedBlackBase solver true unprec resid 7.43435003e-16
+Grid : Message : 174.390169 s : spin 1 color 2 norm2(src5d) 13111.5206 norm2(result5d) 414.922241
+Grid : Message : 175.796311 s : ConjugateGradient Converged on iteration 82	Computed residual 8.03547256e-17	True residual 6.93115628e-16	Target 1e-16
+Grid : Message : 175.796346 s : 	Solver Elapsed    1.367848 s
+Grid : Message : 175.815440 s : SchurRedBlackBase solver true unprec resid 7.40868616e-16
+Grid : Message : 175.815463 s : spin 2 color 0 norm2(src5d) 12955.149 norm2(result5d) 411.443472
+Grid : Message : 177.490000 s : ConjugateGradient Converged on iteration 82	Computed residual 8.82470636e-17	True residual 7.00831401e-16	Target 1e-16
+Grid : Message : 177.490380 s : 	Solver Elapsed    1.192909 s
+Grid : Message : 177.634170 s : SchurRedBlackBase solver true unprec resid 7.48021623e-16
+Grid : Message : 177.634510 s : spin 2 color 1 norm2(src5d) 13205.7179 norm2(result5d) 419.127235
+Grid : Message : 178.212313 s : ConjugateGradient Converged on iteration 82	Computed residual 8.55524293e-17	True residual 6.92219427e-16	Target 1e-16
+Grid : Message : 178.212355 s : 	Solver Elapsed    1.115564 s
+Grid : Message : 178.227932 s : SchurRedBlackBase solver true unprec resid 7.43112376e-16
+Grid : Message : 178.227966 s : spin 2 color 2 norm2(src5d) 13269.5275 norm2(result5d) 419.657599
+Grid : Message : 179.384223 s : ConjugateGradient Converged on iteration 82	Computed residual 8.42513268e-17	True residual 6.93932552e-16	Target 1e-16
+Grid : Message : 179.384258 s : 	Solver Elapsed    1.124348 s
+Grid : Message : 179.398449 s : SchurRedBlackBase solver true unprec resid 7.43242086e-16
+Grid : Message : 179.398487 s : spin 3 color 0 norm2(src5d) 13272.3746 norm2(result5d) 420.680767
+Grid : Message : 180.525702 s : ConjugateGradient Converged on iteration 82	Computed residual 8.24801672e-17	True residual 6.88996469e-16	Target 1e-16
+Grid : Message : 180.525742 s : 	Solver Elapsed    1.094047 s
+Grid : Message : 180.541263 s : SchurRedBlackBase solver true unprec resid 7.38564221e-16
+Grid : Message : 180.541294 s : spin 3 color 1 norm2(src5d) 13035.1935 norm2(result5d) 414.557882
+Grid : Message : 181.688326 s : ConjugateGradient Converged on iteration 82	Computed residual 8.32645808e-17	True residual 6.95287292e-16	Target 1e-16
+Grid : Message : 181.688360 s : 	Solver Elapsed    1.114331 s
+Grid : Message : 181.703954 s : SchurRedBlackBase solver true unprec resid 7.41611153e-16
+Grid : Message : 181.703983 s : spin 3 color 2 norm2(src5d) 13235.9212 norm2(result5d) 416.628698
+Grid : Message : 181.712862 s : -------------------- twisted propagator +epsilon
+Grid : Message : 181.713139 s :  Twist [0] 0.00127323961 phase(1,0)
+Grid : Message : 182.832448 s : ConjugateGradient Converged on iteration 81	Computed residual 6.4273365e-17	True residual 5.11937702e-16	Target 1e-16
+Grid : Message : 182.832486 s : 	Solver Elapsed    1.088866 s
+Grid : Message : 182.845897 s : SchurRedBlackBase solver true unprec resid 4.6640612e-16
+Grid : Message : 182.845928 s : spin 0 color 0 norm2(src5d) 4720291.95 norm2(result5d) 25898.6945
+Grid : Message : 183.990525 s : ConjugateGradient Converged on iteration 81	Computed residual 6.5020832e-17	True residual 5.09316415e-16	Target 1e-16
+Grid : Message : 183.990562 s : 	Solver Elapsed    1.108848 s
+Grid : Message : 184.537100 s : SchurRedBlackBase solver true unprec resid 4.61852009e-16
+Grid : Message : 184.540400 s : spin 0 color 1 norm2(src5d) 4794327.96 norm2(result5d) 26086.6115
+Grid : Message : 185.208401 s : ConjugateGradient Converged on iteration 81	Computed residual 6.6250476e-17	True residual 5.13931212e-16	Target 1e-16
+Grid : Message : 185.208439 s : 	Solver Elapsed    1.167880 s
+Grid : Message : 185.222756 s : SchurRedBlackBase solver true unprec resid 4.67318754e-16
+Grid : Message : 185.222784 s : spin 0 color 2 norm2(src5d) 4765651.91 norm2(result5d) 26153.3396
+Grid : Message : 186.450960 s : ConjugateGradient Converged on iteration 81	Computed residual 6.5015175e-17	True residual 5.12127343e-16	Target 1e-16
+Grid : Message : 186.450989 s : 	Solver Elapsed    1.193115 s
+Grid : Message : 186.465460 s : SchurRedBlackBase solver true unprec resid 4.64468036e-16
+Grid : Message : 186.465491 s : spin 1 color 0 norm2(src5d) 4772103.16 norm2(result5d) 26073.0276
+Grid : Message : 187.594064 s : ConjugateGradient Converged on iteration 80	Computed residual 9.82364049e-17	True residual 5.1428136e-16	Target 1e-16
+Grid : Message : 187.594086 s : 	Solver Elapsed    1.093512 s
+Grid : Message : 187.607656 s : SchurRedBlackBase solver true unprec resid 4.68747587e-16
+Grid : Message : 187.607685 s : spin 1 color 1 norm2(src5d) 4765414.24 norm2(result5d) 25950.4294
+Grid : Message : 188.760128 s : ConjugateGradient Converged on iteration 80	Computed residual 9.84344837e-17	True residual 5.15216479e-16	Target 1e-16
+Grid : Message : 188.760156 s : 	Solver Elapsed    1.114160 s
+Grid : Message : 188.777354 s : SchurRedBlackBase solver true unprec resid 4.68858061e-16
+Grid : Message : 188.777380 s : spin 1 color 2 norm2(src5d) 4740113.22 norm2(result5d) 25922.7787
+Grid : Message : 189.934583 s : ConjugateGradient Converged on iteration 80	Computed residual 9.91061363e-17	True residual 5.12476816e-16	Target 1e-16
+Grid : Message : 189.934595 s : 	Solver Elapsed    1.119803 s
+Grid : Message : 189.949141 s : SchurRedBlackBase solver true unprec resid 4.68712425e-16
+Grid : Message : 189.949168 s : spin 2 color 0 norm2(src5d) 4748903.41 norm2(result5d) 25978.3953
+Grid : Message : 191.228966 s : ConjugateGradient Converged on iteration 80	Computed residual 9.83505494e-17	True residual 5.11767707e-16	Target 1e-16
+Grid : Message : 191.228993 s : 	Solver Elapsed    1.243042 s
+Grid : Message : 191.242992 s : SchurRedBlackBase solver true unprec resid 4.67427341e-16
+Grid : Message : 191.243019 s : spin 2 color 1 norm2(src5d) 4792045.5 norm2(result5d) 26122.287
+Grid : Message : 192.414330 s : ConjugateGradient Converged on iteration 81	Computed residual 6.42466304e-17	True residual 5.13474931e-16	Target 1e-16
+Grid : Message : 192.414349 s : 	Solver Elapsed    1.131929 s
+Grid : Message : 192.427908 s : SchurRedBlackBase solver true unprec resid 4.6848534e-16
+Grid : Message : 192.427940 s : spin 2 color 2 norm2(src5d) 4772921.11 norm2(result5d) 26112.9541
+Grid : Message : 193.556641 s : ConjugateGradient Converged on iteration 80	Computed residual 9.93987383e-17	True residual 5.17595541e-16	Target 1e-16
+Grid : Message : 193.556672 s : 	Solver Elapsed    1.093497 s
+Grid : Message : 193.570247 s : SchurRedBlackBase solver true unprec resid 4.68923644e-16
+Grid : Message : 193.570274 s : spin 3 color 0 norm2(src5d) 4733233.98 norm2(result5d) 25977.4536
+Grid : Message : 194.685258 s : ConjugateGradient Converged on iteration 80	Computed residual 9.76954765e-17	True residual 5.11481615e-16	Target 1e-16
+Grid : Message : 194.685291 s : 	Solver Elapsed    1.077687 s
+Grid : Message : 194.700661 s : SchurRedBlackBase solver true unprec resid 4.72044595e-16
+Grid : Message : 194.700690 s : spin 3 color 1 norm2(src5d) 4767446.21 norm2(result5d) 26091.1732
+Grid : Message : 195.804810 s : ConjugateGradient Converged on iteration 80	Computed residual 9.80296098e-17	True residual 5.11782588e-16	Target 1e-16
+Grid : Message : 195.804854 s : 	Solver Elapsed    1.067817 s
+Grid : Message : 195.819684 s : SchurRedBlackBase solver true unprec resid 4.70619756e-16
+Grid : Message : 195.819711 s : spin 3 color 2 norm2(src5d) 4698654.08 norm2(result5d) 25905.4829
+Grid : Message : 195.828688 s : -------------------- twisted propagator -epsilon
+Grid : Message : 195.828954 s :  Twist [0] -0.00127323961 phase(1,0)
+Grid : Message : 196.938548 s : ConjugateGradient Converged on iteration 81	Computed residual 6.42798337e-17	True residual 5.16475098e-16	Target 1e-16
+Grid : Message : 196.938581 s : 	Solver Elapsed    1.076956 s
+Grid : Message : 196.953951 s : SchurRedBlackBase solver true unprec resid 4.66175728e-16
+Grid : Message : 196.953986 s : spin 0 color 0 norm2(src5d) 4720234.17 norm2(result5d) 25898.4745
+Grid : Message : 198.719930 s : ConjugateGradient Converged on iteration 81	Computed residual 6.50398517e-17	True residual 5.06187704e-16	Target 1e-16
+Grid : Message : 198.720230 s : 	Solver Elapsed    1.083468 s
+Grid : Message : 198.882150 s : SchurRedBlackBase solver true unprec resid 4.61295689e-16
+Grid : Message : 198.882470 s : spin 0 color 1 norm2(src5d) 4794246.34 norm2(result5d) 26086.3316
+Grid : Message : 199.202149 s : ConjugateGradient Converged on iteration 81	Computed residual 6.62646454e-17	True residual 5.18578686e-16	Target 1e-16
+Grid : Message : 199.202174 s : 	Solver Elapsed    1.079428 s
+Grid : Message : 199.215611 s : SchurRedBlackBase solver true unprec resid 4.71244705e-16
+Grid : Message : 199.215632 s : spin 0 color 2 norm2(src5d) 4765609.42 norm2(result5d) 26153.1377
+Grid : Message : 200.356718 s : ConjugateGradient Converged on iteration 81	Computed residual 6.50298295e-17	True residual 5.10066238e-16	Target 1e-16
+Grid : Message : 200.356743 s : 	Solver Elapsed    1.103963 s
+Grid : Message : 200.370299 s : SchurRedBlackBase solver true unprec resid 4.64822604e-16
+Grid : Message : 200.370317 s : spin 1 color 0 norm2(src5d) 4772072.11 norm2(result5d) 26072.8224
+Grid : Message : 201.489254 s : ConjugateGradient Converged on iteration 80	Computed residual 9.82760732e-17	True residual 5.16010015e-16	Target 1e-16
+Grid : Message : 201.489280 s : 	Solver Elapsed    1.084544 s
+Grid : Message : 201.502742 s : SchurRedBlackBase solver true unprec resid 4.69006217e-16
+Grid : Message : 201.502767 s : spin 1 color 1 norm2(src5d) 4765379.77 norm2(result5d) 25950.2314
+Grid : Message : 202.624698 s : ConjugateGradient Converged on iteration 80	Computed residual 9.84417864e-17	True residual 5.17692062e-16	Target 1e-16
+Grid : Message : 202.624727 s : 	Solver Elapsed    1.082790 s
+Grid : Message : 202.638174 s : SchurRedBlackBase solver true unprec resid 4.68699358e-16
+Grid : Message : 202.638202 s : spin 1 color 2 norm2(src5d) 4740087.44 norm2(result5d) 25922.6387
+Grid : Message : 203.764403 s : ConjugateGradient Converged on iteration 80	Computed residual 9.91033702e-17	True residual 5.08774288e-16	Target 1e-16
+Grid : Message : 203.764433 s : 	Solver Elapsed    1.087917 s
+Grid : Message : 203.777778 s : SchurRedBlackBase solver true unprec resid 4.66847026e-16
+Grid : Message : 203.777805 s : spin 2 color 0 norm2(src5d) 4748849.41 norm2(result5d) 25978.1917
+Grid : Message : 204.886575 s : ConjugateGradient Converged on iteration 80	Computed residual 9.8371653e-17	True residual 5.15369181e-16	Target 1e-16
+Grid : Message : 204.886597 s : 	Solver Elapsed    1.073242 s
+Grid : Message : 204.900506 s : SchurRedBlackBase solver true unprec resid 4.66757288e-16
+Grid : Message : 204.900534 s : spin 2 color 1 norm2(src5d) 4792025.54 norm2(result5d) 26122.1344
+Grid : Message : 206.305430 s : ConjugateGradient Converged on iteration 81	Computed residual 6.42631251e-17	True residual 5.12329688e-16	Target 1e-16
+Grid : Message : 206.305740 s : 	Solver Elapsed    1.090426 s
+Grid : Message : 206.441100 s : SchurRedBlackBase solver true unprec resid 4.65542405e-16
+Grid : Message : 206.441380 s : spin 2 color 2 norm2(src5d) 4772891.88 norm2(result5d) 26112.7683
+Grid : Message : 207.183702 s : ConjugateGradient Converged on iteration 80	Computed residual 9.94251744e-17	True residual 5.14955234e-16	Target 1e-16
+Grid : Message : 207.183738 s : 	Solver Elapsed    1.105075 s
+Grid : Message : 207.197272 s : SchurRedBlackBase solver true unprec resid 4.69470836e-16
+Grid : Message : 207.197303 s : spin 3 color 0 norm2(src5d) 4733169.98 norm2(result5d) 25977.2314
+Grid : Message : 208.317974 s : ConjugateGradient Converged on iteration 80	Computed residual 9.77118035e-17	True residual 5.11302813e-16	Target 1e-16
+Grid : Message : 208.318007 s : 	Solver Elapsed    1.086021 s
+Grid : Message : 208.333709 s : SchurRedBlackBase solver true unprec resid 4.69840007e-16
+Grid : Message : 208.333738 s : spin 3 color 1 norm2(src5d) 4767398.24 norm2(result5d) 26090.9839
+Grid : Message : 209.443245 s : ConjugateGradient Converged on iteration 80	Computed residual 9.80370125e-17	True residual 5.11872836e-16	Target 1e-16
+Grid : Message : 209.443274 s : 	Solver Elapsed    1.074748 s
+Grid : Message : 209.456858 s : SchurRedBlackBase solver true unprec resid 4.71560834e-16
+Grid : Message : 209.456889 s : spin 3 color 2 norm2(src5d) 4698592.64 norm2(result5d) 25905.2404
+Grid : Message : 209.534913 s : -------------------- results
+Grid : Message : 209.534941 s : 1st order numerical derivative -- norm2= 8687.89879 epsilon= 0.00100000005
+Grid : Message : 209.569332 s : 1st order sequential insertion -- norm2= 8687.90562
+Grid : Message : 209.603809 s : Diff -- norm_abs= 5.32165424e-05 norm_rel= 5.70938319e-07
+Grid : Message : 209.734601 s : 2nd order numerical derivative -- norm2= 5004.99465 epsilon= 0.00100000005
+Grid : Message : 209.771924 s : 2nd order sequential insertion -- norm2= 5004.99896
+Grid : Message : 209.806175 s : Diff -- norm_abs= 4.21784229e-05 norm_rel= 5.96195144e-07
+Grid : Message : 209.929191 s : *******************************************
+Grid : Message : 209.929199 s : ******* Grid Finalize                ******
+Grid : Message : 209.929203 s : *******************************************
